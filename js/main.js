@@ -419,8 +419,7 @@ while(choice1.firstChild){
             alert(`不正解🙅「${item1.textContent}」`); 
             alert(`やりなおしです😩`); 
             choice1.removeEventListener('click',event);
-            Quizset();
-            //location.reload();
+           location.reload();
           }};
   
         choice1.addEventListener('click',event,false);
