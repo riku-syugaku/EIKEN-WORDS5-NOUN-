@@ -442,11 +442,12 @@ Quizset();
 
 else if(selectbox.value === "11-20"){
   a = 0; h = 0; e = 0;f = 0;g = 0;max =0; 
-  a += 10; h += 18; e += 20;f += 20;g += 20;max =70; 
+  a += 10; h += 18; e += 20;f += 20;g += 20;max =100; 
+ 
   const b = Math.floor(Math.random() * (max - e)) + e ;
   let c = Math.floor(Math.random() * (max - f)) + f ;
   let d = Math.floor(Math.random() * (max - g)) + g ;
-  
+  console.log(b);
     function Quizset () {
     Qnum.textContent = `No.${a + 1}`;
     question.textContent = quizSet[a].q;
@@ -502,8 +503,16 @@ else if(selectbox.value === "11-20"){
             let t = e.target;
             if(t == item1){alert("正解👍"); 
             choice1.removeEventListener('click',event);
+            const b = Math.floor(Math.random() * (max - e)) + e ;
+            let c = Math.floor(Math.random() * (max - f)) + f ;
+            let d = Math.floor(Math.random() * (max - g)) + g ;
+
+
+
             if(a > h){
                 alert(`合格🈴!!`)
+
+                
                 location.reload();
             }else{
               a++;
@@ -538,11 +547,13 @@ else if(selectbox.value === "11-20"){
   else if(selectbox.value === "21-30"){
     a = 0; h = 0; e = 0;f = 0;g = 0;max =0; 
     a += 20; h += 28; e += 30;f += 30;g += 30;max =80; 
-    const b = Math.floor(Math.random() * (max - e)) + e ;
-    let c = Math.floor(Math.random() * (max - f)) + f ;
-    let d = Math.floor(Math.random() * (max - g)) + g ;
-    
+  
       function Quizset () {
+        const b = Math.floor(Math.random() * (max - e)) + e ;
+        let c = Math.floor(Math.random() * (max - f)) + f ;
+        let d = Math.floor(Math.random() * (max - g)) + g ;
+        
+
       Qnum.textContent = `No.${a + 1}`;
       question.textContent = quizSet[a].q;
     
@@ -596,7 +607,9 @@ else if(selectbox.value === "11-20"){
             let event = function(e){
               let t = e.target;
               if(t == item1){alert("正解👍"); 
+
               choice1.removeEventListener('click',event);
+
               if(a > h){
                   alert(`合格🈴!!`)
                   location.reload();
@@ -633,11 +646,13 @@ else if(selectbox.value === "11-20"){
     else if(selectbox.value === "31-40"){
       a = 0; h = 0; e = 0;f = 0;g = 0;max =0; 
       a += 30; h += 38; e += 40;f += 40;g += 40;max =90; 
-      const b = Math.floor(Math.random() * (max - e)) + e ;
-      let c = Math.floor(Math.random() * (max - f)) + f ;
-      let d = Math.floor(Math.random() * (max - g)) + g ;
-      
+
         function Quizset () {
+
+          const b = Math.floor(Math.random() * (max - e)) + e ;
+          let c = Math.floor(Math.random() * (max - f)) + f ;
+          let d = Math.floor(Math.random() * (max - g)) + g ;
+          
         Qnum.textContent = `No.${a + 1}`;
         question.textContent = quizSet[a].q;
       
@@ -728,15 +743,15 @@ else if(selectbox.value === "11-20"){
    else if(selectbox.value === "41-50"){
         a = 0; h = 0; e = 0;f = 0;g = 0;max =0; 
         a += 40; h += 48; e += 50;f += 50;g += 50;max =100; 
-        const b = Math.floor(Math.random() * (max - e)) + e ;
-        let c = Math.floor(Math.random() * (max - f)) + f ;
-        let d = Math.floor(Math.random() * (max - g)) + g ;
-        
-          function Quizset () {
+        function Quizset () {
+          const b = Math.floor(Math.random() * (max - e)) + e ;
+          let c = Math.floor(Math.random() * (max - f)) + f ;
+          let d = Math.floor(Math.random() * (max - g)) + g ;
+          
           Qnum.textContent = `No.${a + 1}`;
           question.textContent = quizSet[a].q;
-        
-        while(choice1.firstChild){
+          
+          while(choice1.firstChild){
           choice1.removeChild(choice1.firstChild);
         }
         
@@ -825,11 +840,11 @@ else if(selectbox.value === "11-20"){
             
             a = 0; h = 0; e = 0;f = 0;g = 0;max =0; 
             a += 50; h += 58; e += 60;f += 60;g += 60;max =110; 
-            const b = Math.floor(Math.random() * (max - e)) + e ;
-            let c = Math.floor(Math.random() * (max - f)) + f ;
-            let d = Math.floor(Math.random() * (max - g)) + g ;
-            
-              function Quizset () {
+            function Quizset () {
+              const b = Math.floor(Math.random() * (max - e)) + e ;
+              let c = Math.floor(Math.random() * (max - f)) + f ;
+              let d = Math.floor(Math.random() * (max - g)) + g ;
+              
               Qnum.textContent = `No.${a + 1}`;
               question.textContent = quizSet[a].q;
             
@@ -920,11 +935,12 @@ else if(selectbox.value === "11-20"){
             else if(selectbox.value === "61-70"){
               a = 0; h = 0; e = 0;f = 0;g = 0;max =0; 
               a += 60; h += 68; max =50; 
-              const b = Math.floor(Math.random() * (max - e)) + e ;
-              let c = Math.floor(Math.random() * (max - f)) + f ;
-              let d = Math.floor(Math.random() * (max - g)) + g ;
-              
-                function Quizset () {
+
+              function Quizset () {
+                const b = Math.floor(Math.random() * (max - e)) + e ;
+                let c = Math.floor(Math.random() * (max - f)) + f ;
+                let d = Math.floor(Math.random() * (max - g)) + g ;
+                
                 Qnum.textContent = `No.${a + 1}`;
                 question.textContent = quizSet[a].q;
               
@@ -1015,11 +1031,11 @@ else if(selectbox.value === "11-20"){
               else if(selectbox.value === "71-80"){
                 a = 0; h = 0; e = 0;f = 0;g = 0;max =0; 
                 a += 70; h += 78; max =60;
-                const b = Math.floor(Math.random() * (max - e)) + e ;
-                let c = Math.floor(Math.random() * (max - f)) + f ;
-                let d = Math.floor(Math.random() * (max - g)) + g ;
-                
-                  function Quizset () {
+                function Quizset () {
+                    const b = Math.floor(Math.random() * (max - e)) + e ;
+                    let c = Math.floor(Math.random() * (max - f)) + f ;
+                    let d = Math.floor(Math.random() * (max - g)) + g ;
+                    
                   Qnum.textContent = `No.${a + 1}`;
                   question.textContent = quizSet[a].q;
                 
@@ -1110,11 +1126,11 @@ else if(selectbox.value === "11-20"){
                 else if(selectbox.value === "81-90"){
                   a = 0; h = 0; e = 0;f = 0;g = 0;max =0; 
                   a += 80; h += 88; max =70;
-                  const b = Math.floor(Math.random() * (max - e)) + e ;
-                  let c = Math.floor(Math.random() * (max - f)) + f ;
-                  let d = Math.floor(Math.random() * (max - g)) + g ;
-                  
-                    function Quizset () {
+                  function Quizset () {
+                    const b = Math.floor(Math.random() * (max - e)) + e ;
+                    let c = Math.floor(Math.random() * (max - f)) + f ;
+                    let d = Math.floor(Math.random() * (max - g)) + g ;
+                    
                     Qnum.textContent = `No.${a + 1}`;
                     question.textContent = quizSet[a].q;
                   
@@ -1205,11 +1221,11 @@ else if(selectbox.value === "11-20"){
                   else if(selectbox.value === "91-100"){
                     a = 0; h = 0; e = 0;f = 0;g = 0;max =0; 
                     a += 90; h += 98; max =70; 
-                    const b = Math.floor(Math.random() * (max - e)) + e ;
-                    let c = Math.floor(Math.random() * (max - f)) + f ;
-                    let d = Math.floor(Math.random() * (max - g)) + g ;
-                    
-                      function Quizset () {
+                    function Quizset () {
+                        const b = Math.floor(Math.random() * (max - e)) + e ;
+                        let c = Math.floor(Math.random() * (max - f)) + f ;
+                        let d = Math.floor(Math.random() * (max - g)) + g ;
+                        
                       Qnum.textContent = `No.${a + 1}`;
                       question.textContent = quizSet[a].q;
                     
