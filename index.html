@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang = "ja">
+<head>
+<meta charset="utf-8">
+<title>Quiz</title>
+<link rel = "stylesheet" href = "css/style.css">
+</head>
+<body>
+  
+    
+
+<section class = "container">
+   
+    <form>
+        <select name="selectbox">
+            <option value="">--問題選択--</option>
+            <option value="1-10">1-10</option>
+            <option value="11-20">11-20</option>
+            <option value="21-30">21-30</option>
+            <option value="31-40">31-40</option>
+            <option value="41-50">41-50</option>
+            <option value="51-60">51-60</option>
+            <option value="61-70">61-70</option>
+            <option value="71-80">71-80</option>
+            <option value="81-90">81-90</option>
+            <option value="91-100">91-100</option>
+        </select>
+    </form>
+    <input id="reset"  type="button" value="リセット" onclick="ClickR();"/>
+
+      <script>
+
+     
+      </script>
+<br>   
+<br>   
+
+    <div id ="Qnum">  </div> 
+    <p id ="question"> 問題を選択してください。</p>
+    <ul id = "choice1" class = "choices"></ul>
+    <!-- <ul id = "choice2" class = "choices"></ul>
+    <ul id = "choice3" class = "choices">なし</ul>
+    <ul id = "choice4" class = "choices">オレンジ</ul>
+     -->
+    <!-- <div id = "btn" class = "disabled">次へ</div> -->
+<section id = "result" class="hidden">
+    <p>得点：3/3</p>
+    <a href= "" >次の問題へ</a>
+</section>
+</section>
+
+<script src = "js/main.js"></script>
+</body>
+
+</html>
