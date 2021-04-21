@@ -11,20 +11,48 @@
 
 <section class = "container">
    
+<p id = "test-title">単語テスト</p>
+
     <form>
-        <select name="selectbox">
-            <option value="">--問題選択--</option>
-            <option value="1-10">1-10</option>
-            <option value="11-20">11-20</option>
-            <option value="21-30">21-30</option>
-            <option value="31-40">31-40</option>
-            <option value="41-50">41-50</option>
-            <option value="51-60">51-60</option>
-            <option value="61-70">61-70</option>
-            <option value="71-80">71-80</option>
-            <option value="81-90">81-90</option>
-            <option value="91-100">91-100</option>
+        <select name="selectbox" id ="selectbox">
+            <option value="">--名詞--</option>
+            <option value="1-10">名詞１</option>
+            <option value="11-20">名詞２</option>
+            <option value="21-30">名詞３</option>
+            <option value="31-40">名詞４</option>
+            <option value="41-50">名詞５</option>
+            <option value="51-60">名詞６</option>
+            <option value="61-70">名詞７</option>
+            <option value="71-80">名詞８</option>
+            <option value="81-90">名詞９</option>
+            <option value="91-100">名詞10</option>
+            <option value="101-110">名詞11</option>
+            <option value="111-120">名詞12</option>
+            <option value="121-130">名詞13</option>
+            <option value="131-140">名詞14</option>
+            <option value="141-150">名詞15</option>
         </select>
+
+        <select name="selectbox1"  id ="selectbox1">
+            <option value="">--その他--</option>
+            <option value="verb1">動詞１</option>
+            <option value="verb2">動詞２</option>
+            <option value="verb3">動詞３</option>
+            <option value="verb4">動詞４</option>
+            <option value="verb5">動詞５</option>
+            <option value="else1">その他１</option>
+            <option value="else2">その他２</option>
+            <option value="else3">その他３</option>
+            <option value="else4">その他４</option>
+            <option value="else5">その他５</option>
+            <option value="else6">その他６</option>
+            <option value="else7">その他７</option>
+            <option value="else8">その他８</option>
+            <option value="else9">その他９</option>
+            
+        </select>
+
+
     </form>
     <input id="reset"  type="button" value="リセット" onclick="ClickR();"/>
 
@@ -38,16 +66,16 @@
     <div id ="Qnum">  </div> 
     <p id ="question"> 問題を選択してください。</p>
     <ul id = "choice1" class = "choices"></ul>
-    <!-- <ul id = "choice2" class = "choices"></ul>
-    <ul id = "choice3" class = "choices">なし</ul>
-    <ul id = "choice4" class = "choices">オレンジ</ul>
-     -->
+
     <!-- <div id = "btn" class = "disabled">次へ</div> -->
 <section id = "result" class="hidden">
     <p>得点：3/3</p>
     <a href= "" >次の問題へ</a>
 </section>
 </section>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
 
 <script src = "js/main.js"></script>
 </body>
