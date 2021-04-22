@@ -159,7 +159,6 @@ const quizSet = [
   {q:`paper`,c:`紙`},
 
 ];
-
 const WrongAns = [
   `少女`,
   `父`,
@@ -308,7 +307,6 @@ const WrongAns = [
   `壁`,
   `紙`,
 ];
-
 const QuizVerb = [
   {q:`like`,c:`好む`},
   {q:`look`,c:`見る`},
@@ -364,7 +362,6 @@ const QuizVerb = [
 
 
 ]
-
 const WrongVerb =[
   `好む`,
   `見る`,
@@ -419,7 +416,6 @@ const WrongVerb =[
 
 
 ]
-
 const QuizElse =[
   {q:`who`,c:`だれ`},
   {q:`what`,c:`何`},
@@ -616,8 +612,6 @@ const WrongElse =[
 
 ]
 
-
-
 function butotnClick(){location.reload();}
 let button = document.getElementById('reset');
 button.onclick = butotnClick;
@@ -645,29 +639,1779 @@ if(selectbox.value === "1-10"){
 a = 0; h = 8; e = 10;f = 10;g = 10;max =60; 
 
 function Quizset () {
+  const b = Math.floor(Math.random() * (max - e)) + e ;
+  let c = Math.floor(Math.random() * (max - f)) + f ;
+  let d = Math.floor(Math.random() * (max - g)) + g ;
+Qnum.textContent = `No.${a + 1}`;
+question.textContent = quizSet[a].q;
+
+//読み上げ
+
+var speak   = new SpeechSynthesisUtterance();
+speak.text  = question.textContent;
+speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+
+speechSynthesis.speak(speak);
+
+
+while(choice1.firstChild){
+choice1.removeChild(choice1.firstChild);
+}
+
+item1.textContent = quizSet[a].c;
+const ul1 = document.querySelector('ul');
+  ul1.appendChild(item1);
+
+  item2.textContent = WrongAns[b];
+  const ul = document.querySelector('ul');
+    ul.appendChild(item2);
+
+  item3.textContent = WrongAns[c];
+  const ul2 = document.querySelector('ul');
+    ul.appendChild(item3);
+  
+   item4.textContent = WrongAns[d];
+   const ul3 = document.querySelector('ul');
+     ul.appendChild(item4);
+
+
+     function shuffle() {
+
+      const x = Math.floor(Math.random() * 4 + 1) ;
+      //console.log(x);
+      
+      if(x == 1){ 
+        ul.insertBefore(item3,item1);
+        ul.insertBefore(item2,item1);
+        ul.insertBefore(item4,item1);
+    
+      }else if(x == 2){
+        ul.insertBefore(item1,item4);
+        ul.insertBefore(item2,item1);
+      }else if(x == 3){
+        ul.insertBefore(item1,item3);
+        ul.insertBefore(item2,item1);
+      }
+      else{
+        ul.insertBefore(item4,item2);
+      }
+    }
+    
+    shuffle();
+
+    function checkAnswer(){
+        
+      let event = function(e){
+        let t = e.target;
+        if(t == item1){
+          alert('正解👍');
+          
+        choice1.removeEventListener('click',event);
+        if(a > h){
+             
+          var Finish   = new SpeechSynthesisUtterance();
+          Finish.text  = 'Great!!Good job!!';
+          Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+          Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+          Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+          speechSynthesis.speak(Finish);
+          alert(`合格!!`)
+            location.reload();
+        }else{
+          a++;
+        }
+        Quizset();
+    
+      }else{
+
+          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+
+          var OMT   = new SpeechSynthesisUtterance();
+          OMT.text  = 'one more time';
+          OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+          OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+          OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+          speechSynthesis.speak(OMT);
+          alert(`やりなおしです😩`); 
+
+          choice1.removeEventListener('click',event);
+          a = 0; h = 8; e = 10;f = 10;g = 10;max =60; 
+          Quizset();
+        }};
+
+      choice1.addEventListener('click',event,false);
+              }
+     checkAnswer();
+
+}
+
+Quizset();
+
+}
+
+else if(selectbox.value === "11-20"){
+  
+  a = 10; h = 18; e = 20;f = 20;g = 20;max =100; 
+ 
+function Quizset () {
+  const b = Math.floor(Math.random() * (max - e)) + e ;
+  let c = Math.floor(Math.random() * (max - f)) + f ;
+  let d = Math.floor(Math.random() * (max - g)) + g ;
+Qnum.textContent = `No.${a + 1}`;
+question.textContent = quizSet[a].q;
+
+//読み上げ
+
+var speak   = new SpeechSynthesisUtterance();
+speak.text  = question.textContent;
+speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+
+// sleep(10);
+speechSynthesis.speak(speak);
+
+
+while(choice1.firstChild){
+choice1.removeChild(choice1.firstChild);
+}
+
+item1.textContent = quizSet[a].c;
+const ul1 = document.querySelector('ul');
+  ul1.appendChild(item1);
+
+  item2.textContent = WrongAns[b];
+  const ul = document.querySelector('ul');
+    ul.appendChild(item2);
+
+  item3.textContent = WrongAns[c];
+  const ul2 = document.querySelector('ul');
+    ul.appendChild(item3);
+  
+   item4.textContent = WrongAns[d];
+   const ul3 = document.querySelector('ul');
+     ul.appendChild(item4);
+
+
+     function shuffle() {
+
+      const x = Math.floor(Math.random() * 4 + 1) ;
+      //console.log(x);
+      
+      if(x == 1){ 
+        ul.insertBefore(item3,item1);
+        ul.insertBefore(item2,item1);
+        ul.insertBefore(item4,item1);
+    
+      }else if(x == 2){
+        ul.insertBefore(item1,item4);
+        ul.insertBefore(item2,item1);
+      }else if(x == 3){
+        ul.insertBefore(item1,item3);
+        ul.insertBefore(item2,item1);
+      }
+      else{
+        ul.insertBefore(item4,item2);
+      }
+    }
+    
+    shuffle();
+
+    function checkAnswer(){
+        
+      let event = function(e){
+        let t = e.target;
+        if(t == item1){
+          alert('正解👍');
+          
+        choice1.removeEventListener('click',event);
+        if(a > h){
+             
+          var Finish   = new SpeechSynthesisUtterance();
+          Finish.text  = 'Great!!Good job!!';
+          Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+          Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+          Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+          speechSynthesis.speak(Finish);
+          alert(`合格!!`)
+            location.reload();
+        }else{
+          a++;
+        }
+        Quizset();
+    
+      }else{
+
+          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+
+          var OMT   = new SpeechSynthesisUtterance();
+          OMT.text  = 'one more time';
+          OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+          OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+          OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+          speechSynthesis.speak(OMT);
+          alert(`やりなおしです😩`); 
+
+          choice1.removeEventListener('click',event);
+          a = 10; h = 18; e = 20;f = 20;g = 20;max =100;
+          Quizset();
+        }};
+
+      choice1.addEventListener('click',event,false);
+              }
+     checkAnswer();
+
+}
+Quizset();
+
+  }
+  
+    else if(selectbox.value === "31-40"){     
+      a = 30; h = 38; e = 40;f = 40;g = 40;max =90; 
+      function Quizset () {
+        const b = Math.floor(Math.random() * (max - e)) + e ;
+        let c = Math.floor(Math.random() * (max - f)) + f ;
+        let d = Math.floor(Math.random() * (max - g)) + g ;
+      Qnum.textContent = `No.${a + 1}`;
+      question.textContent = quizSet[a].q;
+      
+      //読み上げ
+      
+      var speak   = new SpeechSynthesisUtterance();
+      speak.text  = question.textContent;
+      speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+      speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+      speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+      
+      // sleep(10);
+      speechSynthesis.speak(speak);
+      
+      
+      while(choice1.firstChild){
+      choice1.removeChild(choice1.firstChild);
+      }
+      
+      item1.textContent = quizSet[a].c;
+      const ul1 = document.querySelector('ul');
+        ul1.appendChild(item1);
+      
+        item2.textContent = WrongAns[b];
+        const ul = document.querySelector('ul');
+          ul.appendChild(item2);
+      
+        item3.textContent = WrongAns[c];
+        const ul2 = document.querySelector('ul');
+          ul.appendChild(item3);
+        
+         item4.textContent = WrongAns[d];
+         const ul3 = document.querySelector('ul');
+           ul.appendChild(item4);
+      
+      
+           function shuffle() {
+      
+            const x = Math.floor(Math.random() * 4 + 1) ;
+            //console.log(x);
+            
+            if(x == 1){ 
+              ul.insertBefore(item3,item1);
+              ul.insertBefore(item2,item1);
+              ul.insertBefore(item4,item1);
+          
+            }else if(x == 2){
+              ul.insertBefore(item1,item4);
+              ul.insertBefore(item2,item1);
+            }else if(x == 3){
+              ul.insertBefore(item1,item3);
+              ul.insertBefore(item2,item1);
+            }
+            else{
+              ul.insertBefore(item4,item2);
+            }
+          }
+          
+          shuffle();
+      
+          function checkAnswer(){
+              
+            let event = function(e){
+              let t = e.target;
+              if(t == item1){
+                alert('正解👍');
+                
+              choice1.removeEventListener('click',event);
+              if(a > h){
+                   
+                var Finish   = new SpeechSynthesisUtterance();
+                Finish.text  = 'Great!!Good job!!';
+                Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                speechSynthesis.speak(Finish);
+                alert(`合格!!`)
+                  location.reload();
+              }else{
+                a++;
+              }
+              Quizset();
+          
+            }else{
+      
+                alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+      
+                var OMT   = new SpeechSynthesisUtterance();
+                OMT.text  = 'one more time';
+                OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                speechSynthesis.speak(OMT);
+                alert(`やりなおしです😩`); 
+      
+                choice1.removeEventListener('click',event);
+                a = 30; h = 38; e = 40;f = 40;g = 40;max =90; 
+                Quizset();
+              }};
+      
+            choice1.addEventListener('click',event,false);
+                    }
+           checkAnswer();
+      
+      }
+      Quizset();
+      
+    }
+    
+else if(selectbox.value === "41-50"){
+        a = 40; h = 48; e = 50;f = 50;g = 50;max =100; 
+function Quizset () {
+  const b = Math.floor(Math.random() * (max - e)) + e ;
+  let c = Math.floor(Math.random() * (max - f)) + f ;
+  let d = Math.floor(Math.random() * (max - g)) + g ;
+Qnum.textContent = `No.${a + 1}`;
+question.textContent = quizSet[a].q;
+
+//読み上げ
+
+var speak   = new SpeechSynthesisUtterance();
+speak.text  = question.textContent;
+speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+
+// sleep(10);
+speechSynthesis.speak(speak);
+
+
+while(choice1.firstChild){
+choice1.removeChild(choice1.firstChild);
+}
+
+item1.textContent = quizSet[a].c;
+const ul1 = document.querySelector('ul');
+  ul1.appendChild(item1);
+
+  item2.textContent = WrongAns[b];
+  const ul = document.querySelector('ul');
+    ul.appendChild(item2);
+
+  item3.textContent = WrongAns[c];
+  const ul2 = document.querySelector('ul');
+    ul.appendChild(item3);
+  
+   item4.textContent = WrongAns[d];
+   const ul3 = document.querySelector('ul');
+     ul.appendChild(item4);
+
+
+     function shuffle() {
+
+      const x = Math.floor(Math.random() * 4 + 1) ;
+      //console.log(x);
+      
+      if(x == 1){ 
+        ul.insertBefore(item3,item1);
+        ul.insertBefore(item2,item1);
+        ul.insertBefore(item4,item1);
+    
+      }else if(x == 2){
+        ul.insertBefore(item1,item4);
+        ul.insertBefore(item2,item1);
+      }else if(x == 3){
+        ul.insertBefore(item1,item3);
+        ul.insertBefore(item2,item1);
+      }
+      else{
+        ul.insertBefore(item4,item2);
+      }
+    }
+    
+    shuffle();
+
+    function checkAnswer(){
+        
+      let event = function(e){
+        let t = e.target;
+        if(t == item1){
+          alert('正解👍');
+          
+        choice1.removeEventListener('click',event);
+        if(a > h){
+             
+          var Finish   = new SpeechSynthesisUtterance();
+          Finish.text  = 'Great!!Good job!!';
+          Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+          Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+          Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+          speechSynthesis.speak(Finish);
+          alert(`合格!!`)
+            location.reload();
+        }else{
+          a++;
+        }
+        Quizset();
+    
+      }else{
+
+          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+
+          var OMT   = new SpeechSynthesisUtterance();
+          OMT.text  = 'one more time';
+          OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+          OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+          OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+          speechSynthesis.speak(OMT);
+          alert(`やりなおしです😩`); 
+
+          choice1.removeEventListener('click',event);
+          a = 40; h = 48; e = 50;f = 50;g = 50;max =100; 
+          Quizset();
+        }};
+
+      choice1.addEventListener('click',event,false);
+              }
+     checkAnswer();
+
+}
+Quizset();
+
+      }
+      
+else if(selectbox.value === "51-60"){
+            a = 50; h = 58; e = 60;f = 60;g = 60;max =110; 
+            function Quizset () {
+              const b = Math.floor(Math.random() * (max - e)) + e ;
+              let c = Math.floor(Math.random() * (max - f)) + f ;
+              let d = Math.floor(Math.random() * (max - g)) + g ;
+            Qnum.textContent = `No.${a + 1}`;
+            question.textContent = quizSet[a].q;
+            
+            //読み上げ
+            
+            var speak   = new SpeechSynthesisUtterance();
+            speak.text  = question.textContent;
+            speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+            speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+            speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+            
+            // sleep(10);
+            speechSynthesis.speak(speak);
+            
+            
+            while(choice1.firstChild){
+            choice1.removeChild(choice1.firstChild);
+            }
+            
+            item1.textContent = quizSet[a].c;
+            const ul1 = document.querySelector('ul');
+              ul1.appendChild(item1);
+            
+              item2.textContent = WrongAns[b];
+              const ul = document.querySelector('ul');
+                ul.appendChild(item2);
+            
+              item3.textContent = WrongAns[c];
+              const ul2 = document.querySelector('ul');
+                ul.appendChild(item3);
+              
+               item4.textContent = WrongAns[d];
+               const ul3 = document.querySelector('ul');
+                 ul.appendChild(item4);
+            
+            
+                 function shuffle() {
+            
+                  const x = Math.floor(Math.random() * 4 + 1) ;
+                  //console.log(x);
+                  
+                  if(x == 1){ 
+                    ul.insertBefore(item3,item1);
+                    ul.insertBefore(item2,item1);
+                    ul.insertBefore(item4,item1);
+                
+                  }else if(x == 2){
+                    ul.insertBefore(item1,item4);
+                    ul.insertBefore(item2,item1);
+                  }else if(x == 3){
+                    ul.insertBefore(item1,item3);
+                    ul.insertBefore(item2,item1);
+                  }
+                  else{
+                    ul.insertBefore(item4,item2);
+                  }
+                }
+                
+                shuffle();
+            
+                function checkAnswer(){
+                    
+                  let event = function(e){
+                    let t = e.target;
+                    if(t == item1){
+                      alert('正解👍');
+                      
+                    choice1.removeEventListener('click',event);
+                    if(a > h){
+                         
+                      var Finish   = new SpeechSynthesisUtterance();
+                      Finish.text  = 'Great!!Good job!!';
+                      Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                      Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                      Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                      speechSynthesis.speak(Finish);
+                      alert(`合格!!`)
+                        location.reload();
+                    }else{
+                      a++;
+                    }
+                    Quizset();
+                
+                  }else{
+            
+                      alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+            
+                      var OMT   = new SpeechSynthesisUtterance();
+                      OMT.text  = 'one more time';
+                      OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                      OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                      OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                      speechSynthesis.speak(OMT);
+                      alert(`やりなおしです😩`); 
+            
+                      choice1.removeEventListener('click',event);
+                      a = 50; h = 58; e = 60;f = 60;g = 60;max =110; 
+                      Quizset();
+                    }};
+            
+                  choice1.addEventListener('click',event,false);
+                          }
+                 checkAnswer();
+            
+            }
+            Quizset();
+          
+             }
+          
+ else if(selectbox.value === "61-70"){
+    a = 60; h = 68; e = 0;f = 0;g = 0;max =50; 
+    function Quizset () {
+      const b = Math.floor(Math.random() * (max - e)) + e ;
+      let c = Math.floor(Math.random() * (max - f)) + f ;
+      let d = Math.floor(Math.random() * (max - g)) + g ;
+    Qnum.textContent = `No.${a + 1}`;
+    question.textContent = quizSet[a].q;
+    
+    //読み上げ
+    
+    var speak   = new SpeechSynthesisUtterance();
+    speak.text  = question.textContent;
+    speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+    speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+    speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+    
+    // sleep(10);
+    speechSynthesis.speak(speak);
+    
+    
+    while(choice1.firstChild){
+    choice1.removeChild(choice1.firstChild);
+    }
+    
+    item1.textContent = quizSet[a].c;
+    const ul1 = document.querySelector('ul');
+      ul1.appendChild(item1);
+    
+      item2.textContent = WrongAns[b];
+      const ul = document.querySelector('ul');
+        ul.appendChild(item2);
+    
+      item3.textContent = WrongAns[c];
+      const ul2 = document.querySelector('ul');
+        ul.appendChild(item3);
+      
+       item4.textContent = WrongAns[d];
+       const ul3 = document.querySelector('ul');
+         ul.appendChild(item4);
+    
+    
+         function shuffle() {
+    
+          const x = Math.floor(Math.random() * 4 + 1) ;
+          //console.log(x);
+          
+          if(x == 1){ 
+            ul.insertBefore(item3,item1);
+            ul.insertBefore(item2,item1);
+            ul.insertBefore(item4,item1);
+        
+          }else if(x == 2){
+            ul.insertBefore(item1,item4);
+            ul.insertBefore(item2,item1);
+          }else if(x == 3){
+            ul.insertBefore(item1,item3);
+            ul.insertBefore(item2,item1);
+          }
+          else{
+            ul.insertBefore(item4,item2);
+          }
+        }
+        
+        shuffle();
+    
+        function checkAnswer(){
+            
+          let event = function(e){
+            let t = e.target;
+            if(t == item1){
+              alert('正解👍');
+              
+            choice1.removeEventListener('click',event);
+            if(a > h){
+                 
+              var Finish   = new SpeechSynthesisUtterance();
+              Finish.text  = 'Great!!Good job!!';
+              Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+              Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+              Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+              speechSynthesis.speak(Finish);
+              alert(`合格!!`)
+                location.reload();
+            }else{
+              a++;
+            }
+            Quizset();
+        
+          }else{
+    
+              alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+    
+              var OMT   = new SpeechSynthesisUtterance();
+              OMT.text  = 'one more time';
+              OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+              OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+              OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+              speechSynthesis.speak(OMT);
+              alert(`やりなおしです😩`); 
+    
+              choice1.removeEventListener('click',event);
+              a = 60; h = 68; e = 0;f = 0;g = 0;max =50; 
+              
+              Quizset();
+            }};
+    
+          choice1.addEventListener('click',event,false);
+                  }
+         checkAnswer();
+    
+    }
+    Quizset();
+    
+  }
+            
+else if(selectbox.value === "71-80"){
+                a = 70; h = 78;  e = 0;f = 0;g = 0;max =60;
+                function Quizset () {
+                  const b = Math.floor(Math.random() * (max - e)) + e ;
+                  let c = Math.floor(Math.random() * (max - f)) + f ;
+                  let d = Math.floor(Math.random() * (max - g)) + g ;
+                Qnum.textContent = `No.${a + 1}`;
+                question.textContent = quizSet[a].q;
+                
+                //読み上げ
+                
+                var speak   = new SpeechSynthesisUtterance();
+                speak.text  = question.textContent;
+                speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                
+                // sleep(10);
+                speechSynthesis.speak(speak);
+                
+                
+                while(choice1.firstChild){
+                choice1.removeChild(choice1.firstChild);
+                }
+                
+                item1.textContent = quizSet[a].c;
+                const ul1 = document.querySelector('ul');
+                  ul1.appendChild(item1);
+                
+                  item2.textContent = WrongAns[b];
+                  const ul = document.querySelector('ul');
+                    ul.appendChild(item2);
+                
+                  item3.textContent = WrongAns[c];
+                  const ul2 = document.querySelector('ul');
+                    ul.appendChild(item3);
+                  
+                   item4.textContent = WrongAns[d];
+                   const ul3 = document.querySelector('ul');
+                     ul.appendChild(item4);
+                
+                
+                     function shuffle() {
+                
+                      const x = Math.floor(Math.random() * 4 + 1) ;
+                      //console.log(x);
+                      
+                      if(x == 1){ 
+                        ul.insertBefore(item3,item1);
+                        ul.insertBefore(item2,item1);
+                        ul.insertBefore(item4,item1);
+                    
+                      }else if(x == 2){
+                        ul.insertBefore(item1,item4);
+                        ul.insertBefore(item2,item1);
+                      }else if(x == 3){
+                        ul.insertBefore(item1,item3);
+                        ul.insertBefore(item2,item1);
+                      }
+                      else{
+                        ul.insertBefore(item4,item2);
+                      }
+                    }
+                    
+                    shuffle();
+                
+                    function checkAnswer(){
+                        
+                      let event = function(e){
+                        let t = e.target;
+                        if(t == item1){
+                          alert('正解👍');
+                          
+                        choice1.removeEventListener('click',event);
+                        if(a > h){
+                             
+                          var Finish   = new SpeechSynthesisUtterance();
+                          Finish.text  = 'Great!!Good job!!';
+                          Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                          Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                          Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                          speechSynthesis.speak(Finish);
+                          alert(`合格!!`)
+                            location.reload();
+                        }else{
+                          a++;
+                        }
+                        Quizset();
+                    
+                      }else{
+                
+                          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                
+                          var OMT   = new SpeechSynthesisUtterance();
+                          OMT.text  = 'one more time';
+                          OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                          OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                          OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                          speechSynthesis.speak(OMT);
+                          alert(`やりなおしです😩`); 
+                          
+                          choice1.removeEventListener('click',event);
+                          
+                          a = 70; h = 78;  e = 0;f = 0;g = 0;max =60;
+                          Quizset();
+                        }};
+                
+                      choice1.addEventListener('click',event,false);
+                              }
+                     checkAnswer();
+                
+                }
+                Quizset();
+       }
+              
+else if(selectbox.value === "81-90"){
+                  
+                  a = 80; h = 88;  e = 0;f = 0;g = 0;max =70;
+                  function Quizset () {
+                    const b = Math.floor(Math.random() * (max - e)) + e ;
+                    let c = Math.floor(Math.random() * (max - f)) + f ;
+                    let d = Math.floor(Math.random() * (max - g)) + g ;
+                  Qnum.textContent = `No.${a + 1}`;
+                  question.textContent = quizSet[a].q;
+                  
+                  //読み上げ
+                  
+                  var speak   = new SpeechSynthesisUtterance();
+                  speak.text  = question.textContent;
+                  speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                  speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                  speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                  
+                  // sleep(10);
+                  speechSynthesis.speak(speak);
+                  
+                  
+                  while(choice1.firstChild){
+                  choice1.removeChild(choice1.firstChild);
+                  }
+                  
+                  item1.textContent = quizSet[a].c;
+                  const ul1 = document.querySelector('ul');
+                    ul1.appendChild(item1);
+                  
+                    item2.textContent = WrongAns[b];
+                    const ul = document.querySelector('ul');
+                      ul.appendChild(item2);
+                  
+                    item3.textContent = WrongAns[c];
+                    const ul2 = document.querySelector('ul');
+                      ul.appendChild(item3);
+                    
+                     item4.textContent = WrongAns[d];
+                     const ul3 = document.querySelector('ul');
+                       ul.appendChild(item4);
+                  
+                  
+                       function shuffle() {
+                  
+                        const x = Math.floor(Math.random() * 4 + 1) ;
+                        //console.log(x);
+                        
+                        if(x == 1){ 
+                          ul.insertBefore(item3,item1);
+                          ul.insertBefore(item2,item1);
+                          ul.insertBefore(item4,item1);
+                      
+                        }else if(x == 2){
+                          ul.insertBefore(item1,item4);
+                          ul.insertBefore(item2,item1);
+                        }else if(x == 3){
+                          ul.insertBefore(item1,item3);
+                          ul.insertBefore(item2,item1);
+                        }
+                        else{
+                          ul.insertBefore(item4,item2);
+                        }
+                      }
+                      
+                      shuffle();
+                  
+                      function checkAnswer(){
+                          
+                        let event = function(e){
+                          let t = e.target;
+                          if(t == item1){
+                            alert('正解👍');
+                            
+                          choice1.removeEventListener('click',event);
+                          if(a > h){
+                               
+                            var Finish   = new SpeechSynthesisUtterance();
+                            Finish.text  = 'Great!!Good job!!';
+                            Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                            Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                            Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                            speechSynthesis.speak(Finish);
+                            alert(`合格!!`)
+                              location.reload();
+                          }else{
+                            a++;
+                          }
+                          Quizset();
+                      
+                        }else{
+                  
+                            alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                  
+                            var OMT   = new SpeechSynthesisUtterance();
+                            OMT.text  = 'one more time';
+                            OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                            OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                            OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                            speechSynthesis.speak(OMT);
+                            alert(`やりなおしです😩`); 
+                  
+                            choice1.removeEventListener('click',event);
+                            
+                            a = 80; h = 88;  e = 0;f = 0;g = 0;max =70;
+                            Quizset();
+                          }};
+                  
+                        choice1.addEventListener('click',event,false);
+                                }
+                       checkAnswer();
+                  
+                  }
+                  Quizset();
+    }
+                
+else if(selectbox.value === "91-100"){
+          a = 90; h = 98; e = 0;f = 0;g = 0;max =70;
+          function Quizset () {
+            const b = Math.floor(Math.random() * (max - e)) + e ;
+            let c = Math.floor(Math.random() * (max - f)) + f ;
+            let d = Math.floor(Math.random() * (max - g)) + g ;
+          Qnum.textContent = `No.${a + 1}`;
+          question.textContent = quizSet[a].q;
+          
+          //読み上げ
+          
+          var speak   = new SpeechSynthesisUtterance();
+          speak.text  = question.textContent;
+          speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+          speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+          speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+          
+          // sleep(10);
+          speechSynthesis.speak(speak);
+          
+          
+          while(choice1.firstChild){
+          choice1.removeChild(choice1.firstChild);
+          }
+          
+          item1.textContent = quizSet[a].c;
+          const ul1 = document.querySelector('ul');
+            ul1.appendChild(item1);
+          
+            item2.textContent = WrongAns[b];
+            const ul = document.querySelector('ul');
+              ul.appendChild(item2);
+          
+            item3.textContent = WrongAns[c];
+            const ul2 = document.querySelector('ul');
+              ul.appendChild(item3);
+            
+             item4.textContent = WrongAns[d];
+             const ul3 = document.querySelector('ul');
+               ul.appendChild(item4);
+          
+          
+               function shuffle() {
+          
+                const x = Math.floor(Math.random() * 4 + 1) ;
+                //console.log(x);
+                
+                if(x == 1){ 
+                  ul.insertBefore(item3,item1);
+                  ul.insertBefore(item2,item1);
+                  ul.insertBefore(item4,item1);
+              
+                }else if(x == 2){
+                  ul.insertBefore(item1,item4);
+                  ul.insertBefore(item2,item1);
+                }else if(x == 3){
+                  ul.insertBefore(item1,item3);
+                  ul.insertBefore(item2,item1);
+                }
+                else{
+                  ul.insertBefore(item4,item2);
+                }
+              }
+              
+              shuffle();
+          
+              function checkAnswer(){
+                  
+                let event = function(e){
+                  let t = e.target;
+                  if(t == item1){
+                    alert('正解👍');
+                    
+                  choice1.removeEventListener('click',event);
+                  if(a > h){
+                       
+                    var Finish   = new SpeechSynthesisUtterance();
+                    Finish.text  = 'Great!!Good job!!';
+                    Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                    Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                    Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                    speechSynthesis.speak(Finish);
+                    alert(`合格!!`)
+                      location.reload();
+                  }else{
+                    a++;
+                  }
+                  Quizset();
+              
+                }else{
+          
+                    alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+          
+                    var OMT   = new SpeechSynthesisUtterance();
+                    OMT.text  = 'one more time';
+                    OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                    OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                    OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                    speechSynthesis.speak(OMT);
+                    alert(`やりなおしです😩`); 
+          
+                    choice1.removeEventListener('click',event);
+                    
+                    a = 90; h = 98; e = 0;f = 0;g = 0;max =70; 
+                    Quizset();
+                  }};
+          
+                choice1.addEventListener('click',event,false);
+                        }
+               checkAnswer();
+          
+          }
+          Quizset(); 
+    }
+                  
+else if(selectbox.value === "101-110"){
+           a = 100; h = 108; e = 30;f = 30;g = 30;max =90; 
+           function Quizset () {
+            const b = Math.floor(Math.random() * (max - e)) + e ;
+            let c = Math.floor(Math.random() * (max - f)) + f ;
+            let d = Math.floor(Math.random() * (max - g)) + g ;
+          Qnum.textContent = `No.${a + 1}`;
+          question.textContent = quizSet[a].q;
+          
+          //読み上げ
+          
+          var speak   = new SpeechSynthesisUtterance();
+          speak.text  = question.textContent;
+          speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+          speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+          speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+          
+          // sleep(10);
+          speechSynthesis.speak(speak);
+          
+          
+          while(choice1.firstChild){
+          choice1.removeChild(choice1.firstChild);
+          }
+          
+          item1.textContent = quizSet[a].c;
+          const ul1 = document.querySelector('ul');
+            ul1.appendChild(item1);
+          
+            item2.textContent = WrongAns[b];
+            const ul = document.querySelector('ul');
+              ul.appendChild(item2);
+          
+            item3.textContent = WrongAns[c];
+            const ul2 = document.querySelector('ul');
+              ul.appendChild(item3);
+            
+             item4.textContent = WrongAns[d];
+             const ul3 = document.querySelector('ul');
+               ul.appendChild(item4);
+          
+          
+               function shuffle() {
+          
+                const x = Math.floor(Math.random() * 4 + 1) ;
+                //console.log(x);
+                
+                if(x == 1){ 
+                  ul.insertBefore(item3,item1);
+                  ul.insertBefore(item2,item1);
+                  ul.insertBefore(item4,item1);
+              
+                }else if(x == 2){
+                  ul.insertBefore(item1,item4);
+                  ul.insertBefore(item2,item1);
+                }else if(x == 3){
+                  ul.insertBefore(item1,item3);
+                  ul.insertBefore(item2,item1);
+                }
+                else{
+                  ul.insertBefore(item4,item2);
+                }
+              }
+              
+              shuffle();
+          
+              function checkAnswer(){
+                  
+                let event = function(e){
+                  let t = e.target;
+                  if(t == item1){
+                    alert('正解👍');
+                    
+                  choice1.removeEventListener('click',event);
+                  if(a > h){
+                       
+                    var Finish   = new SpeechSynthesisUtterance();
+                    Finish.text  = 'Great!!Good job!!';
+                    Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                    Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                    Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                    speechSynthesis.speak(Finish);
+                    alert(`合格!!`)
+                      location.reload();
+                  }else{
+                    a++;
+                  }
+                  Quizset();
+              
+                }else{
+          
+                    alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+          
+                    var OMT   = new SpeechSynthesisUtterance();
+                    OMT.text  = 'one more time';
+                    OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                    OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                    OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                    speechSynthesis.speak(OMT);
+                    alert(`やりなおしです😩`); 
+                    
+                    choice1.removeEventListener('click',event);
+                    
+                    a = 100; h = 108; e = 30;f = 30;g = 30;max =90; 
+                    Quizset();
+                  }};
+          
+                choice1.addEventListener('click',event,false);
+                        }
+               checkAnswer();
+          
+          }
+          Quizset();
+          }
+                    
+else if(selectbox.value === "111-120"){
+        a = 110; h = 118; e = 40;f = 40;g = 40;max =100; 
+        function Quizset () {
+          const b = Math.floor(Math.random() * (max - e)) + e ;
+          let c = Math.floor(Math.random() * (max - f)) + f ;
+          let d = Math.floor(Math.random() * (max - g)) + g ;
+        Qnum.textContent = `No.${a + 1}`;
+        question.textContent = quizSet[a].q;
+        
+        //読み上げ
+        
+        var speak   = new SpeechSynthesisUtterance();
+        speak.text  = question.textContent;
+        speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+        speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+        speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+        
+        // sleep(10);
+        speechSynthesis.speak(speak);
+        
+        
+        while(choice1.firstChild){
+        choice1.removeChild(choice1.firstChild);
+        }
+        
+        item1.textContent = quizSet[a].c;
+        const ul1 = document.querySelector('ul');
+          ul1.appendChild(item1);
+        
+          item2.textContent = WrongAns[b];
+          const ul = document.querySelector('ul');
+            ul.appendChild(item2);
+        
+          item3.textContent = WrongAns[c];
+          const ul2 = document.querySelector('ul');
+            ul.appendChild(item3);
+          
+           item4.textContent = WrongAns[d];
+           const ul3 = document.querySelector('ul');
+             ul.appendChild(item4);
+        
+        
+             function shuffle() {
+        
+              const x = Math.floor(Math.random() * 4 + 1) ;
+              //console.log(x);
+              
+              if(x == 1){ 
+                ul.insertBefore(item3,item1);
+                ul.insertBefore(item2,item1);
+                ul.insertBefore(item4,item1);
+            
+              }else if(x == 2){
+                ul.insertBefore(item1,item4);
+                ul.insertBefore(item2,item1);
+              }else if(x == 3){
+                ul.insertBefore(item1,item3);
+                ul.insertBefore(item2,item1);
+              }
+              else{
+                ul.insertBefore(item4,item2);
+              }
+            }
+            
+            shuffle();
+        
+            function checkAnswer(){
+                
+              let event = function(e){
+                let t = e.target;
+                if(t == item1){
+                  alert('正解👍');
+                  
+                choice1.removeEventListener('click',event);
+                if(a > h){
+                     
+                  var Finish   = new SpeechSynthesisUtterance();
+                  Finish.text  = 'Great!!Good job!!';
+                  Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                  Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                  Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                  speechSynthesis.speak(Finish);
+                  alert(`合格!!`)
+                    location.reload();
+                }else{
+                  a++;
+                }
+                Quizset();
+            
+              }else{
+        
+                  alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+        
+                  var OMT   = new SpeechSynthesisUtterance();
+                  OMT.text  = 'one more time';
+                  OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                  OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                  OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                  speechSynthesis.speak(OMT);
+                  alert(`やりなおしです😩`); 
+        
+                  choice1.removeEventListener('click',event);
+                  
+                  a = 110; h = 118; e = 40;f = 40;g = 40;max =100; 
+                  Quizset();
+                }};
+        
+              choice1.addEventListener('click',event,false);
+                      }
+             checkAnswer();
+        
+        }
+        Quizset();
+       }
+                                               
+else if(selectbox.value === "121-130"){
+      a = 120; h = 128; e = 30;f = 30;g = 30;max =90; 
+      function Quizset () {
+        const b = Math.floor(Math.random() * (max - e)) + e ;
+        let c = Math.floor(Math.random() * (max - f)) + f ;
+        let d = Math.floor(Math.random() * (max - g)) + g ;
+      Qnum.textContent = `No.${a + 1}`;
+      question.textContent = quizSet[a].q;
+      
+      //読み上げ
+      
+      var speak   = new SpeechSynthesisUtterance();
+      speak.text  = question.textContent;
+      speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+      speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+      speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+      
+      // sleep(10);
+      speechSynthesis.speak(speak);
+      
+      
+      while(choice1.firstChild){
+      choice1.removeChild(choice1.firstChild);
+      }
+      
+      item1.textContent = quizSet[a].c;
+      const ul1 = document.querySelector('ul');
+        ul1.appendChild(item1);
+      
+        item2.textContent = WrongAns[b];
+        const ul = document.querySelector('ul');
+          ul.appendChild(item2);
+      
+        item3.textContent = WrongAns[c];
+        const ul2 = document.querySelector('ul');
+          ul.appendChild(item3);
+        
+         item4.textContent = WrongAns[d];
+         const ul3 = document.querySelector('ul');
+           ul.appendChild(item4);
+      
+      
+           function shuffle() {
+      
+            const x = Math.floor(Math.random() * 4 + 1) ;
+            //console.log(x);
+            
+            if(x == 1){ 
+              ul.insertBefore(item3,item1);
+              ul.insertBefore(item2,item1);
+              ul.insertBefore(item4,item1);
+          
+            }else if(x == 2){
+              ul.insertBefore(item1,item4);
+              ul.insertBefore(item2,item1);
+            }else if(x == 3){
+              ul.insertBefore(item1,item3);
+              ul.insertBefore(item2,item1);
+            }
+            else{
+              ul.insertBefore(item4,item2);
+            }
+          }
+          
+          shuffle();
+      
+          function checkAnswer(){
+              
+            let event = function(e){
+              let t = e.target;
+              if(t == item1){
+                alert('正解👍');
+                
+              choice1.removeEventListener('click',event);
+              if(a > h){
+                   
+                var Finish   = new SpeechSynthesisUtterance();
+                Finish.text  = 'Great!!Good job!!';
+                Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                speechSynthesis.speak(Finish);
+                alert(`合格!!`)
+                  location.reload();
+              }else{
+                a++;
+              }
+              Quizset();
+          
+            }else{
+      
+                alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+      
+                var OMT   = new SpeechSynthesisUtterance();
+                OMT.text  = 'one more time';
+                OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                speechSynthesis.speak(OMT);
+                alert(`やりなおしです😩`); 
+      
+                choice1.removeEventListener('click',event);
+                
+                a = 120; h = 128; e = 30;f = 30;g = 30;max =90; 
+                Quizset();
+              }};
+      
+            choice1.addEventListener('click',event,false);
+                    }
+           checkAnswer();
+      
+      }
+      Quizset();
+         }
+                        
+else if(selectbox.value === "131-140"){
+       a = 130; h = 138; e = 40;f = 40;g = 40;max =120; 
+       function Quizset () {
+        const b = Math.floor(Math.random() * (max - e)) + e ;
+        let c = Math.floor(Math.random() * (max - f)) + f ;
+        let d = Math.floor(Math.random() * (max - g)) + g ;
+      Qnum.textContent = `No.${a + 1}`;
+      question.textContent = quizSet[a].q;
+      
+      //読み上げ
+      
+      var speak   = new SpeechSynthesisUtterance();
+      speak.text  = question.textContent;
+      speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+      speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+      speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+      
+      // sleep(10);
+      speechSynthesis.speak(speak);
+      
+      
+      while(choice1.firstChild){
+      choice1.removeChild(choice1.firstChild);
+      }
+      
+      item1.textContent = quizSet[a].c;
+      const ul1 = document.querySelector('ul');
+        ul1.appendChild(item1);
+      
+        item2.textContent = WrongAns[b];
+        const ul = document.querySelector('ul');
+          ul.appendChild(item2);
+      
+        item3.textContent = WrongAns[c];
+        const ul2 = document.querySelector('ul');
+          ul.appendChild(item3);
+        
+         item4.textContent = WrongAns[d];
+         const ul3 = document.querySelector('ul');
+           ul.appendChild(item4);
+      
+      
+           function shuffle() {
+      
+            const x = Math.floor(Math.random() * 4 + 1) ;
+            //console.log(x);
+            
+            if(x == 1){ 
+              ul.insertBefore(item3,item1);
+              ul.insertBefore(item2,item1);
+              ul.insertBefore(item4,item1);
+          
+            }else if(x == 2){
+              ul.insertBefore(item1,item4);
+              ul.insertBefore(item2,item1);
+            }else if(x == 3){
+              ul.insertBefore(item1,item3);
+              ul.insertBefore(item2,item1);
+            }
+            else{
+              ul.insertBefore(item4,item2);
+            }
+          }
+          
+          shuffle();
+      
+          function checkAnswer(){
+              
+            let event = function(e){
+              let t = e.target;
+              if(t == item1){
+                alert('正解👍');
+                
+              choice1.removeEventListener('click',event);
+              if(a > h){
+                   
+                var Finish   = new SpeechSynthesisUtterance();
+                Finish.text  = 'Great!!Good job!!';
+                Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                speechSynthesis.speak(Finish);
+                alert(`合格!!`)
+                  location.reload();
+              }else{
+                a++;
+              }
+              Quizset();
+          
+            }else{
+      
+                alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+      
+                var OMT   = new SpeechSynthesisUtterance();
+                OMT.text  = 'one more time';
+                OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                speechSynthesis.speak(OMT);
+                alert(`やりなおしです😩`); 
+      
+                choice1.removeEventListener('click',event);
+                
+                a = 130; h = 138; e = 40;f = 40;g = 40;max =120; 
+                Quizset();
+              }};
+      
+            choice1.addEventListener('click',event,false);
+                    }
+           checkAnswer();
+      
+      }
+      Quizset();
+      }
+                                                   
+else if(selectbox.value === "141-150"){
+        a = 140; h = 148; e = 40;f = 40;g = 40;max =120; 
+        function Quizset () {
+          const b = Math.floor(Math.random() * (max - e)) + e ;
+          let c = Math.floor(Math.random() * (max - f)) + f ;
+          let d = Math.floor(Math.random() * (max - g)) + g ;
+        Qnum.textContent = `No.${a + 1}`;
+        question.textContent = quizSet[a].q;
+        
+        //読み上げ
+        
+        var speak   = new SpeechSynthesisUtterance();
+        speak.text  = question.textContent;
+        speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+        speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+        speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+        
+        // sleep(10);
+        speechSynthesis.speak(speak);
+        
+        
+        while(choice1.firstChild){
+        choice1.removeChild(choice1.firstChild);
+        }
+        
+        item1.textContent = quizSet[a].c;
+        const ul1 = document.querySelector('ul');
+          ul1.appendChild(item1);
+        
+          item2.textContent = WrongAns[b];
+          const ul = document.querySelector('ul');
+            ul.appendChild(item2);
+        
+          item3.textContent = WrongAns[c];
+          const ul2 = document.querySelector('ul');
+            ul.appendChild(item3);
+          
+           item4.textContent = WrongAns[d];
+           const ul3 = document.querySelector('ul');
+             ul.appendChild(item4);
+        
+        
+             function shuffle() {
+        
+              const x = Math.floor(Math.random() * 4 + 1) ;
+              //console.log(x);
+              
+              if(x == 1){ 
+                ul.insertBefore(item3,item1);
+                ul.insertBefore(item2,item1);
+                ul.insertBefore(item4,item1);
+            
+              }else if(x == 2){
+                ul.insertBefore(item1,item4);
+                ul.insertBefore(item2,item1);
+              }else if(x == 3){
+                ul.insertBefore(item1,item3);
+                ul.insertBefore(item2,item1);
+              }
+              else{
+                ul.insertBefore(item4,item2);
+              }
+            }
+            
+            shuffle();
+        
+            function checkAnswer(){
+                
+              let event = function(e){
+                let t = e.target;
+                if(t == item1){
+                  alert('正解👍');
+                  
+                choice1.removeEventListener('click',event);
+                if(a > h){
+                     
+                  var Finish   = new SpeechSynthesisUtterance();
+                  Finish.text  = 'Great!!Good job!!';
+                  Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                  Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                  Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                  speechSynthesis.speak(Finish);
+                  alert(`合格!!`)
+                    location.reload();
+                }else{
+                  a++;
+                }
+                Quizset();
+            
+              }else{
+        
+                  alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+        
+                  var OMT   = new SpeechSynthesisUtterance();
+                  OMT.text  = 'one more time';
+                  OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                  OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                  OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                  speechSynthesis.speak(OMT);
+                  alert(`やりなおしです😩`); 
+        
+                  choice1.removeEventListener('click',event);
+                  
+                  a = 140; h = 148; e = 40;f = 40;g = 40;max =120; 
+                  Quizset();
+                }};
+        
+              choice1.addEventListener('click',event,false);
+                      }
+             checkAnswer();
+        
+        }
+        Quizset();
+     }
+                                                     
+                            
+ 
+  else{
+
+    location.reload();
+  }
+ 
+
+
+
+}
+
+let selectbox1 = form.selectbox1;
+
+selectbox1.addEventListener('change', ()=> {
+ // console.log(selectbox.value);
+}, false);
+
+selectbox1.onchange = function(){
+
+if(selectbox1.value === "verb1"){
+  
+  a = 0; h = 8; e = 10;f = 10;g = 10;max =50; 
+  function Quizset () {
+      const b = Math.floor(Math.random() * (max - e)) + e ;
+      let c = Math.floor(Math.random() * (max - f)) + f ;
+      let d = Math.floor(Math.random() * (max - g)) + g ;
+      
+    Qnum.textContent = `No.${a + 1}`;
+    question.textContent = QuizVerb[a].q;
+    var speak   = new SpeechSynthesisUtterance();
+    speak.text  = question.textContent;
+    speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+    speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+    speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+    
+    speechSynthesis.speak(speak);
+
+  while(choice1.firstChild){
+    choice1.removeChild(choice1.firstChild);
+  }
+  
+    item1.textContent = QuizVerb[a].c;
+    const ul1 = document.querySelector('ul');
+      ul1.appendChild(item1);
+    
+      item2.textContent = WrongVerb[b];
+      const ul = document.querySelector('ul');
+        ul.appendChild(item2);
+    
+      item3.textContent = WrongVerb[c];
+      const ul2 = document.querySelector('ul');
+        ul.appendChild(item3);
+      
+       item4.textContent = WrongVerb[d];
+       const ul3 = document.querySelector('ul');
+         ul.appendChild(item4);
+  
+  
+         function shuffle() {
+  
+          const x = Math.floor(Math.random() * 4 + 1) ;
+          //console.log(x);
+          
+          if(x == 1){ 
+            ul.insertBefore(item3,item1);
+            ul.insertBefore(item2,item1);
+            ul.insertBefore(item4,item1);
+        
+          }else if(x == 2){
+            ul.insertBefore(item1,item4);
+            ul.insertBefore(item2,item1);
+          }else if(x == 3){
+            ul.insertBefore(item1,item3);
+            ul.insertBefore(item2,item1);
+          }
+          else{
+            ul.insertBefore(item4,item2);
+          }
+        }
+        
+        shuffle();
+  
+        function checkAnswer(){
+            
+          let event = function(e){
+            let t = e.target;
+            if(t == item1){alert("正解👍"); 
+            choice1.removeEventListener('click',event);
+            if(a > h){
+   
+               var Finish   = new SpeechSynthesisUtterance();
+               Finish.text  = 'Great!!Good job!!';
+               Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+               Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+               Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+               speechSynthesis.speak(Finish);
+               alert(`合格!!`)
+
+                location.reload();
+            }else{
+              a++;
+            }
+            Quizset();
+        
+          }else{
+              alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+              var OMT   = new SpeechSynthesisUtterance();
+              OMT.text  = 'one more time';
+              OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+              OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+              OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+              speechSynthesis.speak(OMT);
+
+              alert(`やりなおしです😩`); 
+              choice1.removeEventListener('click',event);
+              a = 0; h = 8; e = 10;f = 10;g = 10;max =50; 
+              Quizset();
+            }};
+    
+          choice1.addEventListener('click',event,false);
+                  }
+         checkAnswer();
+  
+  }  Quizset();
+
+  }
+
+else if(selectbox1.value === "verb2"){  
+  a = 10; h = 18; e = 20;f = 20;g = 20;max =50; 
+  function Quizset () {
     const b = Math.floor(Math.random() * (max - e)) + e ;
     let c = Math.floor(Math.random() * (max - f)) + f ;
     let d = Math.floor(Math.random() * (max - g)) + g ;
+    
   Qnum.textContent = `No.${a + 1}`;
-  question.textContent = quizSet[a].q;
+  question.textContent = QuizVerb[a].q;
+  var speak   = new SpeechSynthesisUtterance();
+  speak.text  = question.textContent;
+  speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+  speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+  speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+  
+  speechSynthesis.speak(speak);
 
 while(choice1.firstChild){
   choice1.removeChild(choice1.firstChild);
 }
 
-  item1.textContent = quizSet[a].c;
+  item1.textContent = QuizVerb[a].c;
   const ul1 = document.querySelector('ul');
     ul1.appendChild(item1);
   
-    item2.textContent = WrongAns[b];
+    item2.textContent = WrongVerb[b];
     const ul = document.querySelector('ul');
       ul.appendChild(item2);
   
-    item3.textContent = WrongAns[c];
+    item3.textContent = WrongVerb[c];
     const ul2 = document.querySelector('ul');
       ul.appendChild(item3);
     
-     item4.textContent = WrongAns[d];
+     item4.textContent = WrongVerb[d];
      const ul3 = document.querySelector('ul');
        ul.appendChild(item4);
 
@@ -700,12 +2444,18 @@ while(choice1.firstChild){
           
         let event = function(e){
           let t = e.target;
-          if(t == item1){
-            alert('正解👍');
-            
+          if(t == item1){alert("正解👍"); 
           choice1.removeEventListener('click',event);
           if(a > h){
-               alert(`合格!!`)
+ 
+             var Finish   = new SpeechSynthesisUtterance();
+             Finish.text  = 'Great!!Good job!!';
+             Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+             Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+             Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+             speechSynthesis.speak(Finish);
+             alert(`合格!!`)
+
               location.reload();
           }else{
             a++;
@@ -713,11 +2463,17 @@ while(choice1.firstChild){
           Quizset();
       
         }else{
-
             alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+            var OMT   = new SpeechSynthesisUtterance();
+            OMT.text  = 'one more time';
+            OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+            OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+            OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+            speechSynthesis.speak(OMT);
+
             alert(`やりなおしです😩`); 
             choice1.removeEventListener('click',event);
-            a = 0; h = 8; e = 10;f = 10;g = 10;max =60; 
+            a = 10; h = 18; e = 20;f = 20;g = 20;max =50; 
             Quizset();
           }};
   
@@ -725,1582 +2481,138 @@ while(choice1.firstChild){
                 }
        checkAnswer();
 
-}
+}  Quizset();
 
-
-Quizset();
-
-
-
-
-
-
-
-}
-
-else if(selectbox.value === "11-20"){
   
-  a = 10; h = 18; e = 20;f = 20;g = 20;max =100; 
- 
-  const b = Math.floor(Math.random() * (max - e)) + e ;
-  let c = Math.floor(Math.random() * (max - f)) + f ;
-  let d = Math.floor(Math.random() * (max - g)) + g ;
-  console.log(b);
-    function Quizset () {
-    Qnum.textContent = `No.${a + 1}`;
-    question.textContent = quizSet[a].q;
-  
-  while(choice1.firstChild){
-    choice1.removeChild(choice1.firstChild);
   }
+
+
+else if(selectbox1.value === "verb3"){    
+  a = 20; h = 28; e = 30;f = 30;g = 30;max =50; 
+  function Quizset () {
+    const b = Math.floor(Math.random() * (max - e)) + e ;
+    let c = Math.floor(Math.random() * (max - f)) + f ;
+    let d = Math.floor(Math.random() * (max - g)) + g ;
+    
+  Qnum.textContent = `No.${a + 1}`;
+  question.textContent = QuizVerb[a].q;
+  var speak   = new SpeechSynthesisUtterance();
+  speak.text  = question.textContent;
+  speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+  speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+  speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
   
-    item1.textContent = quizSet[a].c;
-    const ul1 = document.querySelector('ul');
-      ul1.appendChild(item1);
+  speechSynthesis.speak(speak);
+
+while(choice1.firstChild){
+  choice1.removeChild(choice1.firstChild);
+}
+
+  item1.textContent = QuizVerb[a].c;
+  const ul1 = document.querySelector('ul');
+    ul1.appendChild(item1);
+  
+    item2.textContent = WrongVerb[b];
+    const ul = document.querySelector('ul');
+      ul.appendChild(item2);
+  
+    item3.textContent = WrongVerb[c];
+    const ul2 = document.querySelector('ul');
+      ul.appendChild(item3);
     
-      item2.textContent = WrongAns[b];
-      const ul = document.querySelector('ul');
-        ul.appendChild(item2);
-    
-      item3.textContent = WrongAns[c];
-      const ul2 = document.querySelector('ul');
-        ul.appendChild(item3);
+     item4.textContent = WrongVerb[d];
+     const ul3 = document.querySelector('ul');
+       ul.appendChild(item4);
+
+
+       function shuffle() {
+
+        const x = Math.floor(Math.random() * 4 + 1) ;
+        //console.log(x);
+        
+        if(x == 1){ 
+          ul.insertBefore(item3,item1);
+          ul.insertBefore(item2,item1);
+          ul.insertBefore(item4,item1);
       
-       item4.textContent = WrongAns[d];
-       const ul3 = document.querySelector('ul');
-         ul.appendChild(item4);
-  
-  
-         function shuffle() {
-  
-          const x = Math.floor(Math.random() * 4 + 1) ;
-          //console.log(x);
-          
-          if(x == 1){ 
-            ul.insertBefore(item3,item1);
-            ul.insertBefore(item2,item1);
-            ul.insertBefore(item4,item1);
-        
-          }else if(x == 2){
-            ul.insertBefore(item1,item4);
-            ul.insertBefore(item2,item1);
-          }else if(x == 3){
-            ul.insertBefore(item1,item3);
-            ul.insertBefore(item2,item1);
-          }
-          else{
-            ul.insertBefore(item4,item2);
-          }
+        }else if(x == 2){
+          ul.insertBefore(item1,item4);
+          ul.insertBefore(item2,item1);
+        }else if(x == 3){
+          ul.insertBefore(item1,item3);
+          ul.insertBefore(item2,item1);
         }
-        
-        shuffle();
-  
-        function checkAnswer(){
-            
-          let event = function(e){
-            let t = e.target;
-            if(t == item1){
-              
-              alert("正解👍"); 
-            choice1.removeEventListener('click',event);
-            const b = Math.floor(Math.random() * (max - e)) + e ;
-            let c = Math.floor(Math.random() * (max - f)) + f ;
-            let d = Math.floor(Math.random() * (max - g)) + g ;
+        else{
+          ul.insertBefore(item4,item2);
+        }
+      }
+      
+      shuffle();
 
+      function checkAnswer(){
+          
+        let event = function(e){
+          let t = e.target;
+          if(t == item1){alert("正解👍"); 
+          choice1.removeEventListener('click',event);
+          if(a > h){
+ 
+             var Finish   = new SpeechSynthesisUtterance();
+             Finish.text  = 'Great!!Good job!!';
+             Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+             Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+             Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+             speechSynthesis.speak(Finish);
+             alert(`合格!!`)
 
-
-            if(a > h){
-               alert(`合格!!`)
-
-                
-                location.reload();
-            }else{
-              a++;
-            }
-            Quizset();
-        
-          }else{
-              alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-              alert(`やりなおしです😩`); 
-              choice1.removeEventListener('click',event);
-  
               location.reload();
-            }};
-    
-          choice1.addEventListener('click',event,false);
-                  }
-         checkAnswer();
+          }else{
+            a++;
+          }
+          Quizset();
+      
+        }else{
+            alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+            var OMT   = new SpeechSynthesisUtterance();
+            OMT.text  = 'one more time';
+            OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+            OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+            OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+            speechSynthesis.speak(OMT);
+
+            alert(`やりなおしです😩`); 
+            choice1.removeEventListener('click',event);
+            a = 20; h = 28; e = 30;f = 30;g = 30;max =50; 
+            Quizset();
+          }};
   
-  }
-  
-  
-  Quizset();
-  
-  
-  
+        choice1.addEventListener('click',event,false);
+                }
+       checkAnswer();
+
+}  Quizset();
+    }
 
 
 
-
-  }
-
-  else if(selectbox.value === "21-30"){
-    
-    a = 20; h = 28; e = 30;f = 30;g = 30;max =80; 
-  
+else if(selectbox1.value === "verb4"){
+      
+      a = 30; h = 38; e = 0;f = 0;g = 0;max =30; 
       function Quizset () {
-        const b = Math.floor(Math.random() * (max - e)) + e ;
-        let c = Math.floor(Math.random() * (max - f)) + f ;
-        let d = Math.floor(Math.random() * (max - g)) + g ;
-        
-
-      Qnum.textContent = `No.${a + 1}`;
-      question.textContent = quizSet[a].q;
-    
-    while(choice1.firstChild){
-      choice1.removeChild(choice1.firstChild);
-    }
-    
-      item1.textContent = quizSet[a].c;
-      const ul1 = document.querySelector('ul');
-        ul1.appendChild(item1);
-      
-        item2.textContent = WrongAns[b];
-        const ul = document.querySelector('ul');
-          ul.appendChild(item2);
-      
-        item3.textContent = WrongAns[c];
-        const ul2 = document.querySelector('ul');
-          ul.appendChild(item3);
-        
-         item4.textContent = WrongAns[d];
-         const ul3 = document.querySelector('ul');
-           ul.appendChild(item4);
-    
-    
-           function shuffle() {
-    
-            const x = Math.floor(Math.random() * 4 + 1) ;
-            //console.log(x);
-            
-            if(x == 1){ 
-              ul.insertBefore(item3,item1);
-              ul.insertBefore(item2,item1);
-              ul.insertBefore(item4,item1);
-          
-            }else if(x == 2){
-              ul.insertBefore(item1,item4);
-              ul.insertBefore(item2,item1);
-            }else if(x == 3){
-              ul.insertBefore(item1,item3);
-              ul.insertBefore(item2,item1);
-            }
-            else{
-              ul.insertBefore(item4,item2);
-            }
-          }
-          
-          shuffle();
-    
-          function checkAnswer(){
-              
-            let event = function(e){
-              let t = e.target;
-              if(t == item1){alert("正解👍"); 
-
-              choice1.removeEventListener('click',event);
-
-              if(a > h){
-                 alert(`合格!!`)
-                  location.reload();
-              }else{
-                a++;
-              }
-              Quizset();
-          
-            }else{
-                alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                alert(`やりなおしです😩`); 
-                choice1.removeEventListener('click',event);
-                a = 20; h = 28; e = 30;f = 30;g = 30;max =80; 
-                Quizset();
-              }};
-      
-            choice1.addEventListener('click',event,false);
-                    }
-           checkAnswer();
-    
-    }
-    
-    
-    Quizset();
-    
-    
-  
-    }
-  
-    else if(selectbox.value === "31-40"){
-      
-      a = 30; h = 38; e = 40;f = 40;g = 40;max =90; 
-
-        function Quizset () {
-
-          const b = Math.floor(Math.random() * (max - e)) + e ;
-          let c = Math.floor(Math.random() * (max - f)) + f ;
-          let d = Math.floor(Math.random() * (max - g)) + g ;
-          
-        Qnum.textContent = `No.${a + 1}`;
-        question.textContent = quizSet[a].q;
-      
-      while(choice1.firstChild){
-        choice1.removeChild(choice1.firstChild);
-      }
-      
-        item1.textContent = quizSet[a].c;
-        const ul1 = document.querySelector('ul');
-          ul1.appendChild(item1);
-        
-          item2.textContent = WrongAns[b];
-          const ul = document.querySelector('ul');
-            ul.appendChild(item2);
-        
-          item3.textContent = WrongAns[c];
-          const ul2 = document.querySelector('ul');
-            ul.appendChild(item3);
-          
-           item4.textContent = WrongAns[d];
-           const ul3 = document.querySelector('ul');
-             ul.appendChild(item4);
-      
-      
-             function shuffle() {
-      
-              const x = Math.floor(Math.random() * 4 + 1) ;
-              //console.log(x);
-              
-              if(x == 1){ 
-                ul.insertBefore(item3,item1);
-                ul.insertBefore(item2,item1);
-                ul.insertBefore(item4,item1);
-            
-              }else if(x == 2){
-                ul.insertBefore(item1,item4);
-                ul.insertBefore(item2,item1);
-              }else if(x == 3){
-                ul.insertBefore(item1,item3);
-                ul.insertBefore(item2,item1);
-              }
-              else{
-                ul.insertBefore(item4,item2);
-              }
-            }
-            
-            shuffle();
-      
-            function checkAnswer(){
-                
-              let event = function(e){
-                let t = e.target;
-                if(t == item1){alert("正解👍"); 
-                choice1.removeEventListener('click',event);
-                if(a > h){
-                   alert(`合格!!`)
-                    location.reload();
-                }else{
-                  a++;
-                }
-                Quizset();
-            
-              }else{
-                  alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                  alert(`やりなおしです😩`); 
-                  choice1.removeEventListener('click',event);
-                  a = 30; h = 38; e = 40;f = 40;g = 40;max =90; 
-
-                  Quizset ();
-                }};
-        
-              choice1.addEventListener('click',event,false);
-                      }
-             checkAnswer();
-      
-      }
-      
-      
-      Quizset();
-      
-    
-      }
-    
-else if(selectbox.value === "41-50"){
-        
-        a = 40; h = 48; e = 50;f = 50;g = 50;max =100; 
-        function Quizset () {
-          const b = Math.floor(Math.random() * (max - e)) + e ;
-          let c = Math.floor(Math.random() * (max - f)) + f ;
-          let d = Math.floor(Math.random() * (max - g)) + g ;
-          
-          Qnum.textContent = `No.${a + 1}`;
-          question.textContent = quizSet[a].q;
-          
-          while(choice1.firstChild){
-          choice1.removeChild(choice1.firstChild);
-        }
-        
-          item1.textContent = quizSet[a].c;
-          const ul1 = document.querySelector('ul');
-            ul1.appendChild(item1);
-          
-            item2.textContent = WrongAns[b];
-            const ul = document.querySelector('ul');
-              ul.appendChild(item2);
-          
-            item3.textContent = WrongAns[c];
-            const ul2 = document.querySelector('ul');
-              ul.appendChild(item3);
-            
-             item4.textContent = WrongAns[d];
-             const ul3 = document.querySelector('ul');
-               ul.appendChild(item4);
-        
-        
-               function shuffle() {
-        
-                const x = Math.floor(Math.random() * 4 + 1) ;
-                //console.log(x);
-                
-                if(x == 1){ 
-                  ul.insertBefore(item3,item1);
-                  ul.insertBefore(item2,item1);
-                  ul.insertBefore(item4,item1);
-              
-                }else if(x == 2){
-                  ul.insertBefore(item1,item4);
-                  ul.insertBefore(item2,item1);
-                }else if(x == 3){
-                  ul.insertBefore(item1,item3);
-                  ul.insertBefore(item2,item1);
-                }
-                else{
-                  ul.insertBefore(item4,item2);
-                }
-              }
-              
-              shuffle();
-        
-              function checkAnswer(){
-                  
-                let event = function(e){
-                  let t = e.target;
-                  if(t == item1){alert("正解👍"); 
-                  choice1.removeEventListener('click',event);
-                  if(a > h){
-                     alert(`合格!!`)
-                      location.reload();
-                  }else{
-                    a++;
-                  }
-                  Quizset();
-              
-                }else{
-                    alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                    alert(`やりなおしです😩`); 
-                    choice1.removeEventListener('click',event);
-        
-                    a = 40; h = 48; e = 50;f = 50;g = 50;max =100; 
-                     Quizset ();
-                  }};
-          
-                choice1.addEventListener('click',event,false);
-                        }
-               checkAnswer();
-        
-        }
-        
-        
-        Quizset();
-        
-        
-        
-      
-      
-      
-      
-        }
-      
-else if(selectbox.value === "51-60"){
- 
-            a = 50; h = 58; e = 60;f = 60;g = 60;max =110; 
-            function Quizset () {
-              const b = Math.floor(Math.random() * (max - e)) + e ;
-              let c = Math.floor(Math.random() * (max - f)) + f ;
-              let d = Math.floor(Math.random() * (max - g)) + g ;
-              
-              Qnum.textContent = `No.${a + 1}`;
-              question.textContent = quizSet[a].q;
-            
-            while(choice1.firstChild){
-              choice1.removeChild(choice1.firstChild);
-            }
-            
-              item1.textContent = quizSet[a].c;
-              const ul1 = document.querySelector('ul');
-                ul1.appendChild(item1);
-              
-                item2.textContent = WrongAns[b];
-                const ul = document.querySelector('ul');
-                  ul.appendChild(item2);
-              
-                item3.textContent = WrongAns[c];
-                const ul2 = document.querySelector('ul');
-                  ul.appendChild(item3);
-                
-                 item4.textContent = WrongAns[d];
-                 const ul3 = document.querySelector('ul');
-                   ul.appendChild(item4);
-            
-            
-                   function shuffle() {
-            
-                    const x = Math.floor(Math.random() * 4 + 1) ;
-                    //console.log(x);
-                    
-                    if(x == 1){ 
-                      ul.insertBefore(item3,item1);
-                      ul.insertBefore(item2,item1);
-                      ul.insertBefore(item4,item1);
-                  
-                    }else if(x == 2){
-                      ul.insertBefore(item1,item4);
-                      ul.insertBefore(item2,item1);
-                    }else if(x == 3){
-                      ul.insertBefore(item1,item3);
-                      ul.insertBefore(item2,item1);
-                    }
-                    else{
-                      ul.insertBefore(item4,item2);
-                    }
-                  }
-                  
-                  shuffle();
-            
-                  function checkAnswer(){
-                      
-                    let event = function(e){
-                      let t = e.target;
-                      if(t == item1){alert("正解👍"); 
-                      choice1.removeEventListener('click',event);
-                      if(a > h){
-                         alert(`合格!!`)
-                          location.reload();
-                      }else{
-                        a++;
-                      }
-                      Quizset();
-                  
-                    }else{
-                        alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                        alert(`やりなおしです😩`); 
-                        choice1.removeEventListener('click',event);
-            
-                        a = 50; h = 58; e = 60;f = 60;g = 60;max =110; 
-                         Quizset () ;
-                      }};
-              
-                    choice1.addEventListener('click',event,false);
-                            }
-                   checkAnswer();
-            
-            }
-            
-            
-            Quizset();
-            
-            
-            
-          
-          
-          
-          
-            }
-          
- else if(selectbox.value === "61-70"){
-              
-              a = 60; h = 68; e = 0;f = 0;g = 0;max =50; 
-
-              function Quizset () {
-                const b = Math.floor(Math.random() * (max - e)) + e ;
-                let c = Math.floor(Math.random() * (max - f)) + f ;
-                let d = Math.floor(Math.random() * (max - g)) + g ;
-                
-                Qnum.textContent = `No.${a + 1}`;
-                question.textContent = quizSet[a].q;
-              
-              while(choice1.firstChild){
-                choice1.removeChild(choice1.firstChild);
-              }
-              
-                item1.textContent = quizSet[a].c;
-                const ul1 = document.querySelector('ul');
-                  ul1.appendChild(item1);
-                
-                  item2.textContent = WrongAns[b];
-                  const ul = document.querySelector('ul');
-                    ul.appendChild(item2);
-                
-                  item3.textContent = WrongAns[c];
-                  const ul2 = document.querySelector('ul');
-                    ul.appendChild(item3);
-                  
-                   item4.textContent = WrongAns[d];
-                   const ul3 = document.querySelector('ul');
-                     ul.appendChild(item4);
-              
-              
-                     function shuffle() {
-              
-                      const x = Math.floor(Math.random() * 4 + 1) ;
-                      //console.log(x);
-                      
-                      if(x == 1){ 
-                        ul.insertBefore(item3,item1);
-                        ul.insertBefore(item2,item1);
-                        ul.insertBefore(item4,item1);
-                    
-                      }else if(x == 2){
-                        ul.insertBefore(item1,item4);
-                        ul.insertBefore(item2,item1);
-                      }else if(x == 3){
-                        ul.insertBefore(item1,item3);
-                        ul.insertBefore(item2,item1);
-                      }
-                      else{
-                        ul.insertBefore(item4,item2);
-                      }
-                    }
-                    
-                    shuffle();
-              
-                    function checkAnswer(){
-                        
-                      let event = function(e){
-                        let t = e.target;
-                        if(t == item1){alert("正解👍"); 
-                        choice1.removeEventListener('click',event);
-                        if(a > h){
-                           alert(`合格!!`)
-                            location.reload();
-                        }else{
-                          a++;
-                        }
-                        Quizset();
-                    
-                      }else{
-                          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                          alert(`やりなおしです😩`); 
-                          choice1.removeEventListener('click',event);
-                          a = 60; h = 68; e = 0;f = 0;g = 0;max =50; 
-                          Quizset();
-                        }};
-                
-                      choice1.addEventListener('click',event,false);
-                              }
-                     checkAnswer();
-              
-              }
-              
-              
-              Quizset();
-              
-              
-              
-            
-            
-            
-            
-              }
-            
-else if(selectbox.value === "71-80"){
-                
-                a = 70; h = 78;  e = 0;f = 0;g = 0;max =60;
-                function Quizset () {
-                    const b = Math.floor(Math.random() * (max - e)) + e ;
-                    let c = Math.floor(Math.random() * (max - f)) + f ;
-                    let d = Math.floor(Math.random() * (max - g)) + g ;
-                    
-                  Qnum.textContent = `No.${a + 1}`;
-                  question.textContent = quizSet[a].q;
-                
-                while(choice1.firstChild){
-                  choice1.removeChild(choice1.firstChild);
-                }
-                
-                  item1.textContent = quizSet[a].c;
-                  const ul1 = document.querySelector('ul');
-                    ul1.appendChild(item1);
-                  
-                    item2.textContent = WrongAns[b];
-                    const ul = document.querySelector('ul');
-                      ul.appendChild(item2);
-                  
-                    item3.textContent = WrongAns[c];
-                    const ul2 = document.querySelector('ul');
-                      ul.appendChild(item3);
-                    
-                     item4.textContent = WrongAns[d];
-                     const ul3 = document.querySelector('ul');
-                       ul.appendChild(item4);
-                
-                
-                       function shuffle() {
-                
-                        const x = Math.floor(Math.random() * 4 + 1) ;
-                        //console.log(x);
-                        
-                        if(x == 1){ 
-                          ul.insertBefore(item3,item1);
-                          ul.insertBefore(item2,item1);
-                          ul.insertBefore(item4,item1);
-                      
-                        }else if(x == 2){
-                          ul.insertBefore(item1,item4);
-                          ul.insertBefore(item2,item1);
-                        }else if(x == 3){
-                          ul.insertBefore(item1,item3);
-                          ul.insertBefore(item2,item1);
-                        }
-                        else{
-                          ul.insertBefore(item4,item2);
-                        }
-                      }
-                      
-                      shuffle();
-                
-                      function checkAnswer(){
-                          
-                        let event = function(e){
-                          let t = e.target;
-                          if(t == item1){alert("正解👍"); 
-                          choice1.removeEventListener('click',event);
-                          if(a > h){
-                             alert(`合格!!`)
-                              location.reload();
-                          }else{
-                            a++;
-                          }
-                          Quizset();
-                      
-                        }else{
-                            alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                            alert(`やりなおしです😩`); 
-                            choice1.removeEventListener('click',event);
-                            a = 70; h = 78;  e = 0;f = 0;g = 0;max =60;
-                            Quizset ();
-                          }};
-                  
-                        choice1.addEventListener('click',event,false);
-                                }
-                       checkAnswer();
-                
-                }
-                
-                
-                Quizset();
-                
-                
-                
-              
-              
-              
-              
-                }
-              
-else if(selectbox.value === "81-90"){
-                  
-                  a = 80; h = 88;  e = 0;f = 0;g = 0;max =70;
-                  function Quizset () {
-                    const b = Math.floor(Math.random() * (max - e)) + e ;
-                    let c = Math.floor(Math.random() * (max - f)) + f ;
-                    let d = Math.floor(Math.random() * (max - g)) + g ;
-                    
-                    Qnum.textContent = `No.${a + 1}`;
-                    question.textContent = quizSet[a].q;
-                  
-                  while(choice1.firstChild){
-                    choice1.removeChild(choice1.firstChild);
-                  }
-                  
-                    item1.textContent = quizSet[a].c;
-                    const ul1 = document.querySelector('ul');
-                      ul1.appendChild(item1);
-                    
-                      item2.textContent = WrongAns[b];
-                      const ul = document.querySelector('ul');
-                        ul.appendChild(item2);
-                    
-                      item3.textContent = WrongAns[c];
-                      const ul2 = document.querySelector('ul');
-                        ul.appendChild(item3);
-                      
-                       item4.textContent = WrongAns[d];
-                       const ul3 = document.querySelector('ul');
-                         ul.appendChild(item4);
-                  
-                  
-                         function shuffle() {
-                  
-                          const x = Math.floor(Math.random() * 4 + 1) ;
-                          //console.log(x);
-                          
-                          if(x == 1){ 
-                            ul.insertBefore(item3,item1);
-                            ul.insertBefore(item2,item1);
-                            ul.insertBefore(item4,item1);
-                        
-                          }else if(x == 2){
-                            ul.insertBefore(item1,item4);
-                            ul.insertBefore(item2,item1);
-                          }else if(x == 3){
-                            ul.insertBefore(item1,item3);
-                            ul.insertBefore(item2,item1);
-                          }
-                          else{
-                            ul.insertBefore(item4,item2);
-                          }
-                        }
-                        
-                        shuffle();
-                  
-                        function checkAnswer(){
-                            
-                          let event = function(e){
-                            let t = e.target;
-                            if(t == item1){alert("正解👍"); 
-                            choice1.removeEventListener('click',event);
-                            if(a > h){
-                               alert(`合格!!`)
-                                location.reload();
-                            }else{
-                              a++;
-                            }
-                            Quizset();
-                        
-                          }else{
-                              alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                              alert(`やりなおしです😩`); 
-                              choice1.removeEventListener('click',event);
-                              a = 80; h = 88;  e = 0;f = 0;g = 0;max =70;
-                              Quizset () ;
-                            }};
-                    
-                          choice1.addEventListener('click',event,false);
-                                  }
-                         checkAnswer();
-                  
-                  }
-                  
-                  
-                  Quizset();
-                  
-                  
-                  
-                
-                
-                
-                
-                  }
-                
-else if(selectbox.value === "91-100"){
-                    
-                    a = 90; h = 98; e = 0;f = 0;g = 0;max =70; 
-                    function Quizset () {
-                        const b = Math.floor(Math.random() * (max - e)) + e ;
-                        let c = Math.floor(Math.random() * (max - f)) + f ;
-                        let d = Math.floor(Math.random() * (max - g)) + g ;
-                        
-                      Qnum.textContent = `No.${a + 1}`;
-                      question.textContent = quizSet[a].q;
-                    
-                    while(choice1.firstChild){
-                      choice1.removeChild(choice1.firstChild);
-                    }
-                    
-                      item1.textContent = quizSet[a].c;
-                      const ul1 = document.querySelector('ul');
-                        ul1.appendChild(item1);
-                      
-                        item2.textContent = WrongAns[b];
-                        const ul = document.querySelector('ul');
-                          ul.appendChild(item2);
-                      
-                        item3.textContent = WrongAns[c];
-                        const ul2 = document.querySelector('ul');
-                          ul.appendChild(item3);
-                        
-                         item4.textContent = WrongAns[d];
-                         const ul3 = document.querySelector('ul');
-                           ul.appendChild(item4);
-                    
-                    
-                           function shuffle() {
-                    
-                            const x = Math.floor(Math.random() * 4 + 1) ;
-                            //console.log(x);
-                            
-                            if(x == 1){ 
-                              ul.insertBefore(item3,item1);
-                              ul.insertBefore(item2,item1);
-                              ul.insertBefore(item4,item1);
-                          
-                            }else if(x == 2){
-                              ul.insertBefore(item1,item4);
-                              ul.insertBefore(item2,item1);
-                            }else if(x == 3){
-                              ul.insertBefore(item1,item3);
-                              ul.insertBefore(item2,item1);
-                            }
-                            else{
-                              ul.insertBefore(item4,item2);
-                            }
-                          }
-                          
-                          shuffle();
-                    
-                          function checkAnswer(){
-                              
-                            let event = function(e){
-                              let t = e.target;
-                              if(t == item1){alert("正解👍"); 
-                              choice1.removeEventListener('click',event);
-                              if(a > h){
-                                 alert(`合格!!`)
-                                  location.reload();
-                              }else{
-                                a++;
-                              }
-                              Quizset();
-                          
-                            }else{
-                                alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                                alert(`やりなおしです😩`); 
-                                choice1.removeEventListener('click',event);
-                                a = 90; h = 98; e = 0;f = 0;g = 0;max =70; 
-                               Quizset ();
-                              }};
-                      
-                            choice1.addEventListener('click',event,false);
-                                    }
-                           checkAnswer();
-                    
-                    }
-                    
-                    
-                    Quizset();
-                    
-                    
-                    
-                  
-                  
-                  
-                  
-                    }
-                  
-else if(selectbox.value === "101-110"){
-                      
-                      a = 100; h = 108; e = 30;f = 30;g = 30;max =90; 
-                      const b = Math.floor(Math.random() * (max - e)) + e ;
-                      let c = Math.floor(Math.random() * (max - f)) + f ;
-                      let d = Math.floor(Math.random() * (max - g)) + g ;
-                      
-                        function Quizset () {
-                        Qnum.textContent = `No.${a + 1}`;
-                        question.textContent = quizSet[a].q;
-                      
-                      while(choice1.firstChild){
-                        choice1.removeChild(choice1.firstChild);
-                      }
-                      
-                        item1.textContent = quizSet[a].c;
-                        const ul1 = document.querySelector('ul');
-                          ul1.appendChild(item1);
-                        
-                          item2.textContent = WrongAns[b];
-                          const ul = document.querySelector('ul');
-                            ul.appendChild(item2);
-                        
-                          item3.textContent = WrongAns[c];
-                          const ul2 = document.querySelector('ul');
-                            ul.appendChild(item3);
-                          
-                           item4.textContent = WrongAns[d];
-                           const ul3 = document.querySelector('ul');
-                             ul.appendChild(item4);
-                      
-                      
-                             function shuffle() {
-                      
-                              const x = Math.floor(Math.random() * 4 + 1) ;
-                              //console.log(x);
-                              
-                              if(x == 1){ 
-                                ul.insertBefore(item3,item1);
-                                ul.insertBefore(item2,item1);
-                                ul.insertBefore(item4,item1);
-                            
-                              }else if(x == 2){
-                                ul.insertBefore(item1,item4);
-                                ul.insertBefore(item2,item1);
-                              }else if(x == 3){
-                                ul.insertBefore(item1,item3);
-                                ul.insertBefore(item2,item1);
-                              }
-                              else{
-                                ul.insertBefore(item4,item2);
-                              }
-                            }
-                            
-                            shuffle();
-                      
-                            function checkAnswer(){
-                                
-                              let event = function(e){
-                                let t = e.target;
-                                if(t == item1){alert("正解👍"); 
-                                choice1.removeEventListener('click',event);
-                                if(a > h){
-                                   alert(`合格!!`)
-                                    location.reload();
-                                }else{
-                                  a++;
-                                }
-                                Quizset();
-                            
-                              }else{
-                                  alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                                  alert(`やりなおしです😩`); 
-                                  choice1.removeEventListener('click',event);
-                                  a = 100; h = 108; e = 30;f = 30;g = 30;max =90; 
-                                  Quizset();
-                                }};
-                        
-                              choice1.addEventListener('click',event,false);
-                                      }
-                             checkAnswer();
-                      
-                      }
-                      
-                      
-                      Quizset();
-                      
-                      
-                      
-                    
-                    
-                    
-                    
-                      }
-                    
-else if(selectbox.value === "111-120"){
-                        
-                        a = 110; h = 118; e = 40;f = 40;g = 40;max =100; 
-                        function Quizset () {
-                            const b = Math.floor(Math.random() * (max - e)) + e ;
-                            let c = Math.floor(Math.random() * (max - f)) + f ;
-                            let d = Math.floor(Math.random() * (max - g)) + g ;
-                            
-                          Qnum.textContent = `No.${a + 1}`;
-                          question.textContent = quizSet[a].q;
-                        
-                        while(choice1.firstChild){
-                          choice1.removeChild(choice1.firstChild);
-                        }
-                        
-                          item1.textContent = quizSet[a].c;
-                          const ul1 = document.querySelector('ul');
-                            ul1.appendChild(item1);
-                          
-                            item2.textContent = WrongAns[b];
-                            const ul = document.querySelector('ul');
-                              ul.appendChild(item2);
-                          
-                            item3.textContent = WrongAns[c];
-                            const ul2 = document.querySelector('ul');
-                              ul.appendChild(item3);
-                            
-                             item4.textContent = WrongAns[d];
-                             const ul3 = document.querySelector('ul');
-                               ul.appendChild(item4);
-                        
-                        
-                               function shuffle() {
-                        
-                                const x = Math.floor(Math.random() * 4 + 1) ;
-                                //console.log(x);
-                                
-                                if(x == 1){ 
-                                  ul.insertBefore(item3,item1);
-                                  ul.insertBefore(item2,item1);
-                                  ul.insertBefore(item4,item1);
-                              
-                                }else if(x == 2){
-                                  ul.insertBefore(item1,item4);
-                                  ul.insertBefore(item2,item1);
-                                }else if(x == 3){
-                                  ul.insertBefore(item1,item3);
-                                  ul.insertBefore(item2,item1);
-                                }
-                                else{
-                                  ul.insertBefore(item4,item2);
-                                }
-                              }
-                              
-                              shuffle();
-                        
-                              function checkAnswer(){
-                                  
-                                let event = function(e){
-                                  let t = e.target;
-                                  if(t == item1){alert("正解👍"); 
-                                  choice1.removeEventListener('click',event);
-                                  if(a > h){
-                                     alert(`合格!!`)
-                                      location.reload();
-                                  }else{
-                                    a++;
-                                  }
-                                  Quizset();
-                              
-                                }else{
-                                    alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                                    alert(`やりなおしです😩`); 
-                                    choice1.removeEventListener('click',event);
-                                    a = 110; h = 118; e = 40;f = 40;g = 40;max =100; 
-                                    Quizset () ;
-                                  }};
-                          
-                                choice1.addEventListener('click',event,false);
-                                        }
-                               checkAnswer();
-                        
-                        }
-                        
-                        
-                        Quizset();
-                        
-                        
-                        
-                      
-                      
-                      
-                      
-                        }
-                                               
-else if(selectbox.value === "121-130"){
-                          
-                          a = 120; h = 128; e = 30;f = 30;g = 30;max =90; 
-                          function Quizset () {
-                              const b = Math.floor(Math.random() * (max - e)) + e ;
-                              let c = Math.floor(Math.random() * (max - f)) + f ;
-                              let d = Math.floor(Math.random() * (max - g)) + g ;
-                              
-                            Qnum.textContent = `No.${a + 1}`;
-                            question.textContent = quizSet[a].q;
-                          
-                          while(choice1.firstChild){
-                            choice1.removeChild(choice1.firstChild);
-                          }
-                          
-                            item1.textContent = quizSet[a].c;
-                            const ul1 = document.querySelector('ul');
-                              ul1.appendChild(item1);
-                            
-                              item2.textContent = WrongAns[b];
-                              const ul = document.querySelector('ul');
-                                ul.appendChild(item2);
-                            
-                              item3.textContent = WrongAns[c];
-                              const ul2 = document.querySelector('ul');
-                                ul.appendChild(item3);
-                              
-                               item4.textContent = WrongAns[d];
-                               const ul3 = document.querySelector('ul');
-                                 ul.appendChild(item4);
-                          
-                          
-                                 function shuffle() {
-                          
-                                  const x = Math.floor(Math.random() * 4 + 1) ;
-                                  //console.log(x);
-                                  
-                                  if(x == 1){ 
-                                    ul.insertBefore(item3,item1);
-                                    ul.insertBefore(item2,item1);
-                                    ul.insertBefore(item4,item1);
-                                
-                                  }else if(x == 2){
-                                    ul.insertBefore(item1,item4);
-                                    ul.insertBefore(item2,item1);
-                                  }else if(x == 3){
-                                    ul.insertBefore(item1,item3);
-                                    ul.insertBefore(item2,item1);
-                                  }
-                                  else{
-                                    ul.insertBefore(item4,item2);
-                                  }
-                                }
-                                
-                                shuffle();
-                          
-                                function checkAnswer(){
-                                    
-                                  let event = function(e){
-                                    let t = e.target;
-                                    if(t == item1){alert("正解👍"); 
-                                    choice1.removeEventListener('click',event);
-                                    if(a > h){
-                                       alert(`合格!!`)
-                                        location.reload();
-                                    }else{
-                                      a++;
-                                    }
-                                    Quizset();
-                                
-                                  }else{
-                                      alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                                      alert(`やりなおしです😩`); 
-                                      choice1.removeEventListener('click',event);
-                                      a = 120; h = 128; e = 30;f = 30;g = 30;max =90; 
-                                      Quizset();
-                                    }};
-                            
-                                  choice1.addEventListener('click',event,false);
-                                          }
-                                 checkAnswer();
-                          
-                          }
-                          
-                          
-                          Quizset();
-                          
-                          
-                          
-                        
-                        
-                        
-                        
-                          }
-                        
-else if(selectbox.value === "131-140"){
-                            
-                            a = 130; h = 138; e = 40;f = 40;g = 40;max =120; 
-                            function Quizset () {
-                                const b = Math.floor(Math.random() * (max - e)) + e ;
-                                let c = Math.floor(Math.random() * (max - f)) + f ;
-                                let d = Math.floor(Math.random() * (max - g)) + g ;
-                                
-                              Qnum.textContent = `No.${a + 1}`;
-                              question.textContent = quizSet[a].q;
-                            
-                            while(choice1.firstChild){
-                              choice1.removeChild(choice1.firstChild);
-                            }
-                            
-                              item1.textContent = quizSet[a].c;
-                              const ul1 = document.querySelector('ul');
-                                ul1.appendChild(item1);
-                              
-                                item2.textContent = WrongAns[b];
-                                const ul = document.querySelector('ul');
-                                  ul.appendChild(item2);
-                              
-                                item3.textContent = WrongAns[c];
-                                const ul2 = document.querySelector('ul');
-                                  ul.appendChild(item3);
-                                
-                                 item4.textContent = WrongAns[d];
-                                 const ul3 = document.querySelector('ul');
-                                   ul.appendChild(item4);
-                            
-                            
-                                   function shuffle() {
-                            
-                                    const x = Math.floor(Math.random() * 4 + 1) ;
-                                    //console.log(x);
-                                    
-                                    if(x == 1){ 
-                                      ul.insertBefore(item3,item1);
-                                      ul.insertBefore(item2,item1);
-                                      ul.insertBefore(item4,item1);
-                                  
-                                    }else if(x == 2){
-                                      ul.insertBefore(item1,item4);
-                                      ul.insertBefore(item2,item1);
-                                    }else if(x == 3){
-                                      ul.insertBefore(item1,item3);
-                                      ul.insertBefore(item2,item1);
-                                    }
-                                    else{
-                                      ul.insertBefore(item4,item2);
-                                    }
-                                  }
-                                  
-                                  shuffle();
-                            
-                                  function checkAnswer(){
-                                      
-                                    let event = function(e){
-                                      let t = e.target;
-                                      if(t == item1){alert("正解👍"); 
-                                      choice1.removeEventListener('click',event);
-                                      if(a > h){
-                                         alert(`合格!!`)
-                                          location.reload();
-                                      }else{
-                                        a++;
-                                      }
-                                      Quizset();
-                                  
-                                    }else{
-                                        alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                                        alert(`やりなおしです😩`); 
-                                        choice1.removeEventListener('click',event);
-                                        a = 130; h = 138; e = 40;f = 40;g = 40;max =120; 
-                                        Quizset();
-                                      }};
-                              
-                                    choice1.addEventListener('click',event,false);
-                                            }
-                                   checkAnswer();
-                            
-                            }
-                            
-                            
-                            Quizset();
-                            
-                            
-                            
-                          
-                          
-                          
-                          
-                            }
-                                                   
-else if(selectbox.value === "141-150"){
-                              
-                              a = 140; h = 148; e = 40;f = 40;g = 40;max =120; 
-                              function Quizset () {
-                                  const b = Math.floor(Math.random() * (max - e)) + e ;
-                                  let c = Math.floor(Math.random() * (max - f)) + f ;
-                                  let d = Math.floor(Math.random() * (max - g)) + g ;
-                                  
-                                Qnum.textContent = `No.${a + 1}`;
-                                question.textContent = quizSet[a].q;
-                              
-                              while(choice1.firstChild){
-                                choice1.removeChild(choice1.firstChild);
-                              }
-                              
-                                item1.textContent = quizSet[a].c;
-                                const ul1 = document.querySelector('ul');
-                                  ul1.appendChild(item1);
-                                
-                                  item2.textContent = WrongAns[b];
-                                  const ul = document.querySelector('ul');
-                                    ul.appendChild(item2);
-                                
-                                  item3.textContent = WrongAns[c];
-                                  const ul2 = document.querySelector('ul');
-                                    ul.appendChild(item3);
-                                  
-                                   item4.textContent = WrongAns[d];
-                                   const ul3 = document.querySelector('ul');
-                                     ul.appendChild(item4);
-                              
-                              
-                                     function shuffle() {
-                              
-                                      const x = Math.floor(Math.random() * 4 + 1) ;
-                                      //console.log(x);
-                                      
-                                      if(x == 1){ 
-                                        ul.insertBefore(item3,item1);
-                                        ul.insertBefore(item2,item1);
-                                        ul.insertBefore(item4,item1);
-                                    
-                                      }else if(x == 2){
-                                        ul.insertBefore(item1,item4);
-                                        ul.insertBefore(item2,item1);
-                                      }else if(x == 3){
-                                        ul.insertBefore(item1,item3);
-                                        ul.insertBefore(item2,item1);
-                                      }
-                                      else{
-                                        ul.insertBefore(item4,item2);
-                                      }
-                                    }
-                                    
-                                    shuffle();
-                              
-                                    function checkAnswer(){
-                                        
-                                      let event = function(e){
-                                        let t = e.target;
-                                        if(t == item1){alert("正解👍"); 
-                                        choice1.removeEventListener('click',event);
-                                        if(a > h){
-                                           alert(`合格!!`)
-                                            location.reload();
-                                        }else{
-                                          a++;
-                                        }
-                                        Quizset();
-                                    
-                                      }else{
-                                          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                                          alert(`やりなおしです😩`); 
-                                          choice1.removeEventListener('click',event);
-                                          a = 140; h = 148; e = 40;f = 40;g = 40;max =120; 
-                                          Quizset();
-                                        }};
-                                
-                                      choice1.addEventListener('click',event,false);
-                                              }
-                                     checkAnswer();
-                              
-                              }
-                              
-                              
-                              Quizset();
-                              
-                              
-                              
-                            
-                            
-                            
-                            
-                              }
-                                                     
-                            
- 
-  else{
-
-    location.reload();
-  }
- 
-
-
-}
-
- 
-let selectbox1 = form.selectbox1;
-
-selectbox1.addEventListener('change', ()=> {
- // console.log(selectbox.value);
-}, false);
-
-
-selectbox1.onchange = function(){
-
-if(selectbox1.value === "verb1"){
-  
-  a = 0; h = 8; e = 10;f = 10;g = 10;max =50; 
-  function Quizset () {
-      const b = Math.floor(Math.random() * (max - e)) + e ;
-      let c = Math.floor(Math.random() * (max - f)) + f ;
-      let d = Math.floor(Math.random() * (max - g)) + g ;
-      
-    Qnum.textContent = `No.${a + 1}`;
-    question.textContent = QuizVerb[a].q;
-  
-  while(choice1.firstChild){
-    choice1.removeChild(choice1.firstChild);
-  }
-  
-    item1.textContent = QuizVerb[a].c;
-    const ul1 = document.querySelector('ul');
-      ul1.appendChild(item1);
-    
-      item2.textContent = WrongVerb[b];
-      const ul = document.querySelector('ul');
-        ul.appendChild(item2);
-    
-      item3.textContent = WrongVerb[c];
-      const ul2 = document.querySelector('ul');
-        ul.appendChild(item3);
-      
-       item4.textContent = WrongVerb[d];
-       const ul3 = document.querySelector('ul');
-         ul.appendChild(item4);
-  
-  
-         function shuffle() {
-  
-          const x = Math.floor(Math.random() * 4 + 1) ;
-          //console.log(x);
-          
-          if(x == 1){ 
-            ul.insertBefore(item3,item1);
-            ul.insertBefore(item2,item1);
-            ul.insertBefore(item4,item1);
-        
-          }else if(x == 2){
-            ul.insertBefore(item1,item4);
-            ul.insertBefore(item2,item1);
-          }else if(x == 3){
-            ul.insertBefore(item1,item3);
-            ul.insertBefore(item2,item1);
-          }
-          else{
-            ul.insertBefore(item4,item2);
-          }
-        }
-        
-        shuffle();
-  
-        function checkAnswer(){
-            
-          let event = function(e){
-            let t = e.target;
-            if(t == item1){alert("正解👍"); 
-            choice1.removeEventListener('click',event);
-            if(a > h){
-               alert(`合格!!`)
-                location.reload();
-            }else{
-              a++;
-            }
-            Quizset();
-        
-          }else{
-              alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-              alert(`やりなおしです😩`); 
-              choice1.removeEventListener('click',event);
-              a = 0; h = 8; e = 10;f = 10;g = 10;max =50; 
-              Quizset();
-            }};
-    
-          choice1.addEventListener('click',event,false);
-                  }
-         checkAnswer();
-  
-  }
-  
-  
-  Quizset();
-  
-  
-  
-
-
-
-
-  }
-
-else if(selectbox1.value === "verb2"){
-  
-  a = 10; h = 18; e = 20;f = 20;g = 20;max =50; 
-  function Quizset () {
-      const b = Math.floor(Math.random() * (max - e)) + e ;
-      let c = Math.floor(Math.random() * (max - f)) + f ;
-      let d = Math.floor(Math.random() * (max - g)) + g ;
-      
-    Qnum.textContent = `No.${a + 1}`;
-    question.textContent = QuizVerb[a].q;
-  
-  while(choice1.firstChild){
-    choice1.removeChild(choice1.firstChild);
-  }
-  
-    item1.textContent = QuizVerb[a].c;
-    const ul1 = document.querySelector('ul');
-      ul1.appendChild(item1);
-    
-      item2.textContent = WrongVerb[b];
-      const ul = document.querySelector('ul');
-        ul.appendChild(item2);
-    
-      item3.textContent = WrongVerb[c];
-      const ul2 = document.querySelector('ul');
-        ul.appendChild(item3);
-      
-       item4.textContent = WrongVerb[d];
-       const ul3 = document.querySelector('ul');
-         ul.appendChild(item4);
-  
-  
-         function shuffle() {
-  
-          const x = Math.floor(Math.random() * 4 + 1) ;
-          //console.log(x);
-          
-          if(x == 1){ 
-            ul.insertBefore(item3,item1);
-            ul.insertBefore(item2,item1);
-            ul.insertBefore(item4,item1);
-        
-          }else if(x == 2){
-            ul.insertBefore(item1,item4);
-            ul.insertBefore(item2,item1);
-          }else if(x == 3){
-            ul.insertBefore(item1,item3);
-            ul.insertBefore(item2,item1);
-          }
-          else{
-            ul.insertBefore(item4,item2);
-          }
-        }
-        
-        shuffle();
-  
-        function checkAnswer(){
-            
-          let event = function(e){
-            let t = e.target;
-            if(t == item1){alert("正解👍"); 
-            choice1.removeEventListener('click',event);
-            if(a > h){
-               alert(`合格!!`)
-                location.reload();
-            }else{
-              a++;
-            }
-            Quizset();
-        
-          }else{
-              alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-              alert(`やりなおしです😩`); 
-              choice1.removeEventListener('click',event);
-              a = 10; h = 18; e = 20;f = 20;g = 20;max =50;
-              Quizset();
-            }};
-    
-          choice1.addEventListener('click',event,false);
-                  }
-         checkAnswer();
-  
-  }
-  
-  
-  Quizset();
-  
-  
-  
-
-
-
-
-  }
-else if(selectbox1.value === "verb3"){
-    
-    a = 20; h = 28; e = 30;f = 30;g = 30;max =50; 
-    function Quizset () {
         const b = Math.floor(Math.random() * (max - e)) + e ;
         let c = Math.floor(Math.random() * (max - f)) + f ;
         let d = Math.floor(Math.random() * (max - g)) + g ;
         
       Qnum.textContent = `No.${a + 1}`;
       question.textContent = QuizVerb[a].q;
-    
+      var speak   = new SpeechSynthesisUtterance();
+      speak.text  = question.textContent;
+      speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+      speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+      speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+      
+      speechSynthesis.speak(speak);
+  
     while(choice1.firstChild){
       choice1.removeChild(choice1.firstChild);
     }
@@ -2353,7 +2665,15 @@ else if(selectbox1.value === "verb3"){
               if(t == item1){alert("正解👍"); 
               choice1.removeEventListener('click',event);
               if(a > h){
+     
+                 var Finish   = new SpeechSynthesisUtterance();
+                 Finish.text  = 'Great!!Good job!!';
+                 Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                 Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                 Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                 speechSynthesis.speak(Finish);
                  alert(`合格!!`)
+  
                   location.reload();
               }else{
                 a++;
@@ -2362,9 +2682,16 @@ else if(selectbox1.value === "verb3"){
           
             }else{
                 alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                var OMT   = new SpeechSynthesisUtterance();
+                OMT.text  = 'one more time';
+                OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                speechSynthesis.speak(OMT);
+  
                 alert(`やりなおしです😩`); 
                 choice1.removeEventListener('click',event);
-                a = 20; h = 28; e = 30;f = 30;g = 30;max =50; 
+                a = 30; h = 38; e = 0;f = 0;g = 0;max =30; 
                 Quizset();
               }};
       
@@ -2372,30 +2699,29 @@ else if(selectbox1.value === "verb3"){
                     }
            checkAnswer();
     
-    }
-    
-    
-    Quizset();
-    
-    
-    
+    }  Quizset();
   
-  
-  
-  
-    }
 
-else if(selectbox1.value === "verb4"){
-      
-      a = 30; h = 38; e = 0;f = 0;g = 0;max =30; 
-      function Quizset () {
+      }
+
+else if(selectbox1.value === "verb5"){
+        
+        a = 40; h = 48; e = 0;f = 0;g = 0;max =40; 
+        function Quizset () {
           const b = Math.floor(Math.random() * (max - e)) + e ;
           let c = Math.floor(Math.random() * (max - f)) + f ;
           let d = Math.floor(Math.random() * (max - g)) + g ;
           
         Qnum.textContent = `No.${a + 1}`;
         question.textContent = QuizVerb[a].q;
-      
+        var speak   = new SpeechSynthesisUtterance();
+        speak.text  = question.textContent;
+        speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+        speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+        speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+        
+        speechSynthesis.speak(speak);
+    
       while(choice1.firstChild){
         choice1.removeChild(choice1.firstChild);
       }
@@ -2448,6 +2774,459 @@ else if(selectbox1.value === "verb4"){
                 if(t == item1){alert("正解👍"); 
                 choice1.removeEventListener('click',event);
                 if(a > h){
+       
+                   var Finish   = new SpeechSynthesisUtterance();
+                   Finish.text  = 'Great!!Good job!!';
+                   Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                   Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                   Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                   speechSynthesis.speak(Finish);
+                   alert(`合格!!`)
+    
+                    location.reload();
+                }else{
+                  a++;
+                }
+                Quizset();
+            
+              }else{
+                  alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                  var OMT   = new SpeechSynthesisUtterance();
+                  OMT.text  = 'one more time';
+                  OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                  OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                  OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                  speechSynthesis.speak(OMT);
+    
+                  alert(`やりなおしです😩`); 
+                  choice1.removeEventListener('click',event);
+                  a = 40; h = 48; e = 0;f = 0;g = 0;max =40; 
+                  Quizset();
+                }};
+        
+              choice1.addEventListener('click',event,false);
+                      }
+             checkAnswer();
+      
+      }  Quizset();
+    
+
+        }
+
+
+else if(selectbox1.value === "else1"){
+          
+          a = 0; h = 8; e = 10;f = 10;g = 10;max =80; 
+          function Quizset () {
+              const b = Math.floor(Math.random() * (max - e)) + e ;
+              let c = Math.floor(Math.random() * (max - f)) + f ;
+              let d = Math.floor(Math.random() * (max - g)) + g ;
+              
+            Qnum.textContent = `No.${a + 1}`;
+            question.textContent = QuizElse[a].q;
+          
+            var speak   = new SpeechSynthesisUtterance();
+            speak.text  = question.textContent;
+            speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+            speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+            speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+            
+            speechSynthesis.speak(speak);
+            
+
+
+          while(choice1.firstChild){
+            choice1.removeChild(choice1.firstChild);
+          }
+          
+            item1.textContent = QuizElse[a].c;
+            const ul1 = document.querySelector('ul');
+              ul1.appendChild(item1);
+            
+              item2.textContent = WrongElse[b];
+              const ul = document.querySelector('ul');
+                ul.appendChild(item2);
+            
+              item3.textContent = WrongElse[c];
+              const ul2 = document.querySelector('ul');
+                ul.appendChild(item3);
+              
+               item4.textContent = WrongElse[d];
+               const ul3 = document.querySelector('ul');
+                 ul.appendChild(item4);
+          
+          
+                 function shuffle() {
+          
+                  const x = Math.floor(Math.random() * 4 + 1) ;
+                  //console.log(x);
+                  
+                  if(x == 1){ 
+                    ul.insertBefore(item3,item1);
+                    ul.insertBefore(item2,item1);
+                    ul.insertBefore(item4,item1);
+                
+                  }else if(x == 2){
+                    ul.insertBefore(item1,item4);
+                    ul.insertBefore(item2,item1);
+                  }else if(x == 3){
+                    ul.insertBefore(item1,item3);
+                    ul.insertBefore(item2,item1);
+                  }
+                  else{
+                    ul.insertBefore(item4,item2);
+                  }
+                }
+                
+                shuffle();
+          
+                function checkAnswer(){
+                    
+                  let event = function(e){
+                    let t = e.target;
+                    if(t == item1){alert("正解👍"); 
+                    choice1.removeEventListener('click',event);
+                    if(a > h){
+                      var Finish   = new SpeechSynthesisUtterance();
+                      Finish.text  = 'Great!!Good job!!';
+                      Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                      Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                      Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                      speechSynthesis.speak(Finish);
+            
+
+                       alert(`合格!!`)
+                        location.reload();
+                    }else{
+                      a++;
+                    }
+                    Quizset();
+                
+                  }else{
+                      alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                      var OMT   = new SpeechSynthesisUtterance();
+                      OMT.text  = 'one more time';
+                      OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                      OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                      OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                      speechSynthesis.speak(OMT);
+
+                      alert(`やりなおしです😩`); 
+                      choice1.removeEventListener('click',event);
+                      a = 0; h = 8; e = 10;f = 10;g = 10;max =80; 
+                      Quizset();
+                    }};
+            
+                  choice1.addEventListener('click',event,false);
+                          }
+                 checkAnswer();
+          
+          } Quizset();
+
+        
+          }
+  
+else if(selectbox1.value === "else2"){
+              a = 10; h = 18; e = 20;f = 20;g = 20;max =80; 
+              function Quizset () {
+                const b = Math.floor(Math.random() * (max - e)) + e ;
+                let c = Math.floor(Math.random() * (max - f)) + f ;
+                let d = Math.floor(Math.random() * (max - g)) + g ;
+                
+              Qnum.textContent = `No.${a + 1}`;
+              question.textContent = QuizElse[a].q;
+            
+              var speak   = new SpeechSynthesisUtterance();
+              speak.text  = question.textContent;
+              speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+              speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+              speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+              
+              speechSynthesis.speak(speak);
+              
+  
+  
+            while(choice1.firstChild){
+              choice1.removeChild(choice1.firstChild);
+            }
+            
+              item1.textContent = QuizElse[a].c;
+              const ul1 = document.querySelector('ul');
+                ul1.appendChild(item1);
+              
+                item2.textContent = WrongElse[b];
+                const ul = document.querySelector('ul');
+                  ul.appendChild(item2);
+              
+                item3.textContent = WrongElse[c];
+                const ul2 = document.querySelector('ul');
+                  ul.appendChild(item3);
+                
+                 item4.textContent = WrongElse[d];
+                 const ul3 = document.querySelector('ul');
+                   ul.appendChild(item4);
+            
+            
+                   function shuffle() {
+            
+                    const x = Math.floor(Math.random() * 4 + 1) ;
+                    //console.log(x);
+                    
+                    if(x == 1){ 
+                      ul.insertBefore(item3,item1);
+                      ul.insertBefore(item2,item1);
+                      ul.insertBefore(item4,item1);
+                  
+                    }else if(x == 2){
+                      ul.insertBefore(item1,item4);
+                      ul.insertBefore(item2,item1);
+                    }else if(x == 3){
+                      ul.insertBefore(item1,item3);
+                      ul.insertBefore(item2,item1);
+                    }
+                    else{
+                      ul.insertBefore(item4,item2);
+                    }
+                  }
+                  
+                  shuffle();
+            
+                  function checkAnswer(){
+                      
+                    let event = function(e){
+                      let t = e.target;
+                      if(t == item1){alert("正解👍"); 
+                      choice1.removeEventListener('click',event);
+                      if(a > h){
+                        var Finish   = new SpeechSynthesisUtterance();
+                        Finish.text  = 'Great!!Good job!!';
+                        Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                        Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                        Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                        speechSynthesis.speak(Finish);
+              
+  
+                         alert(`合格!!`)
+                          location.reload();
+                      }else{
+                        a++;
+                      }
+                      Quizset();
+                  
+                    }else{
+                        alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                        var OMT   = new SpeechSynthesisUtterance();
+                        OMT.text  = 'one more time';
+                        OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                        OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                        OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                        speechSynthesis.speak(OMT);
+  
+                        alert(`やりなおしです😩`); 
+                        choice1.removeEventListener('click',event);
+                        a = 10; h = 18; e = 20;f = 20;g = 20;max =80; 
+                        Quizset();
+                      }};
+              
+                    choice1.addEventListener('click',event,false);
+                            }
+                   checkAnswer();
+            
+            } Quizset();
+  
+            
+          }
+else if(selectbox1.value === "else3"){
+              
+              a = 20; h = 28; e = 30;f = 30;g = 30;max =80; 
+              function Quizset () {
+                const b = Math.floor(Math.random() * (max - e)) + e ;
+                let c = Math.floor(Math.random() * (max - f)) + f ;
+                let d = Math.floor(Math.random() * (max - g)) + g ;
+                
+              Qnum.textContent = `No.${a + 1}`;
+              question.textContent = QuizElse[a].q;
+            
+              var speak   = new SpeechSynthesisUtterance();
+              speak.text  = question.textContent;
+              speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+              speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+              speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+              
+              speechSynthesis.speak(speak);
+              
+  
+  
+            while(choice1.firstChild){
+              choice1.removeChild(choice1.firstChild);
+            }
+            
+              item1.textContent = QuizElse[a].c;
+              const ul1 = document.querySelector('ul');
+                ul1.appendChild(item1);
+              
+                item2.textContent = WrongElse[b];
+                const ul = document.querySelector('ul');
+                  ul.appendChild(item2);
+              
+                item3.textContent = WrongElse[c];
+                const ul2 = document.querySelector('ul');
+                  ul.appendChild(item3);
+                
+                 item4.textContent = WrongElse[d];
+                 const ul3 = document.querySelector('ul');
+                   ul.appendChild(item4);
+            
+            
+                   function shuffle() {
+            
+                    const x = Math.floor(Math.random() * 4 + 1) ;
+                    //console.log(x);
+                    
+                    if(x == 1){ 
+                      ul.insertBefore(item3,item1);
+                      ul.insertBefore(item2,item1);
+                      ul.insertBefore(item4,item1);
+                  
+                    }else if(x == 2){
+                      ul.insertBefore(item1,item4);
+                      ul.insertBefore(item2,item1);
+                    }else if(x == 3){
+                      ul.insertBefore(item1,item3);
+                      ul.insertBefore(item2,item1);
+                    }
+                    else{
+                      ul.insertBefore(item4,item2);
+                    }
+                  }
+                  
+                  shuffle();
+            
+                  function checkAnswer(){
+                      
+                    let event = function(e){
+                      let t = e.target;
+                      if(t == item1){alert("正解👍"); 
+                      choice1.removeEventListener('click',event);
+                      if(a > h){
+                        var Finish   = new SpeechSynthesisUtterance();
+                        Finish.text  = 'Great!!Good job!!';
+                        Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                        Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                        Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                        speechSynthesis.speak(Finish);
+              
+  
+                         alert(`合格!!`)
+                          location.reload();
+                      }else{
+                        a++;
+                      }
+                      Quizset();
+                  
+                    }else{
+                        alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                        var OMT   = new SpeechSynthesisUtterance();
+                        OMT.text  = 'one more time';
+                        OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                        OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                        OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                        speechSynthesis.speak(OMT);
+  
+                        alert(`やりなおしです😩`); 
+                        choice1.removeEventListener('click',event);
+                        a = 20; h = 28; e = 30;f = 30;g = 30;max =80; 
+                        Quizset();
+                      }};
+              
+                    choice1.addEventListener('click',event,false);
+                            }
+                   checkAnswer();
+            
+            } Quizset();
+  
+
+            }
+else if(selectbox1.value === "else4"){
+        a = 30; h = 38; e = 40;f = 40;g = 40;max =90; 
+        function Quizset () {
+          const b = Math.floor(Math.random() * (max - e)) + e ;
+          let c = Math.floor(Math.random() * (max - f)) + f ;
+          let d = Math.floor(Math.random() * (max - g)) + g ;
+          
+        Qnum.textContent = `No.${a + 1}`;
+        question.textContent = QuizElse[a].q;
+      
+        var speak   = new SpeechSynthesisUtterance();
+        speak.text  = question.textContent;
+        speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+        speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+        speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+        
+        speechSynthesis.speak(speak);
+        
+
+
+      while(choice1.firstChild){
+        choice1.removeChild(choice1.firstChild);
+      }
+      
+        item1.textContent = QuizElse[a].c;
+        const ul1 = document.querySelector('ul');
+          ul1.appendChild(item1);
+        
+          item2.textContent = WrongElse[b];
+          const ul = document.querySelector('ul');
+            ul.appendChild(item2);
+        
+          item3.textContent = WrongElse[c];
+          const ul2 = document.querySelector('ul');
+            ul.appendChild(item3);
+          
+           item4.textContent = WrongElse[d];
+           const ul3 = document.querySelector('ul');
+             ul.appendChild(item4);
+      
+      
+             function shuffle() {
+      
+              const x = Math.floor(Math.random() * 4 + 1) ;
+              //console.log(x);
+              
+              if(x == 1){ 
+                ul.insertBefore(item3,item1);
+                ul.insertBefore(item2,item1);
+                ul.insertBefore(item4,item1);
+            
+              }else if(x == 2){
+                ul.insertBefore(item1,item4);
+                ul.insertBefore(item2,item1);
+              }else if(x == 3){
+                ul.insertBefore(item1,item3);
+                ul.insertBefore(item2,item1);
+              }
+              else{
+                ul.insertBefore(item4,item2);
+              }
+            }
+            
+            shuffle();
+      
+            function checkAnswer(){
+                
+              let event = function(e){
+                let t = e.target;
+                if(t == item1){alert("正解👍"); 
+                choice1.removeEventListener('click',event);
+                if(a > h){
+                  var Finish   = new SpeechSynthesisUtterance();
+                  Finish.text  = 'Great!!Good job!!';
+                  Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                  Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                  Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                  speechSynthesis.speak(Finish);
+        
+
                    alert(`合格!!`)
                     location.reload();
                 }else{
@@ -2457,9 +3236,16 @@ else if(selectbox1.value === "verb4"){
             
               }else{
                   alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                  var OMT   = new SpeechSynthesisUtterance();
+                  OMT.text  = 'one more time';
+                  OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                  OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                  OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                  speechSynthesis.speak(OMT);
+
                   alert(`やりなおしです😩`); 
                   choice1.removeEventListener('click',event);
-                  a = 30; h = 38; e = 0;f = 0;g = 0;max =30; 
+                  a = 30; h = 38; e = 40;f = 40;g = 40;max =90; 
                   Quizset();
                 }};
         
@@ -2467,47 +3253,47 @@ else if(selectbox1.value === "verb4"){
                       }
              checkAnswer();
       
-      }
-      
-      
-      Quizset();
-      
-      
-      
-    
-    
-    
-    
-      }
+      } Quizset();
 
-else if(selectbox1.value === "verb5"){
-        
-        a = 40; h = 48; e = 0;f = 0;g = 0;max =40; 
-        function Quizset () {
+
+      }
+  else if(selectbox1.value === "else5"){
+          a = 40; h = 48; e = 50;f = 50;g = 50;max =90; 
+          function Quizset () {
             const b = Math.floor(Math.random() * (max - e)) + e ;
             let c = Math.floor(Math.random() * (max - f)) + f ;
             let d = Math.floor(Math.random() * (max - g)) + g ;
             
           Qnum.textContent = `No.${a + 1}`;
-          question.textContent = QuizVerb[a].q;
+          question.textContent = QuizElse[a].q;
         
+          var speak   = new SpeechSynthesisUtterance();
+          speak.text  = question.textContent;
+          speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+          speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+          speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+          
+          speechSynthesis.speak(speak);
+          
+
+
         while(choice1.firstChild){
           choice1.removeChild(choice1.firstChild);
         }
         
-          item1.textContent = QuizVerb[a].c;
+          item1.textContent = QuizElse[a].c;
           const ul1 = document.querySelector('ul');
             ul1.appendChild(item1);
           
-            item2.textContent = WrongVerb[b];
+            item2.textContent = WrongElse[b];
             const ul = document.querySelector('ul');
               ul.appendChild(item2);
           
-            item3.textContent = WrongVerb[c];
+            item3.textContent = WrongElse[c];
             const ul2 = document.querySelector('ul');
               ul.appendChild(item3);
             
-             item4.textContent = WrongVerb[d];
+             item4.textContent = WrongElse[d];
              const ul3 = document.querySelector('ul');
                ul.appendChild(item4);
         
@@ -2543,6 +3329,14 @@ else if(selectbox1.value === "verb5"){
                   if(t == item1){alert("正解👍"); 
                   choice1.removeEventListener('click',event);
                   if(a > h){
+                    var Finish   = new SpeechSynthesisUtterance();
+                    Finish.text  = 'Great!!Good job!!';
+                    Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                    Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                    Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                    speechSynthesis.speak(Finish);
+          
+
                      alert(`合格!!`)
                       location.reload();
                   }else{
@@ -2552,9 +3346,16 @@ else if(selectbox1.value === "verb5"){
               
                 }else{
                     alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                    var OMT   = new SpeechSynthesisUtterance();
+                    OMT.text  = 'one more time';
+                    OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                    OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                    OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                    speechSynthesis.speak(OMT);
+
                     alert(`やりなおしです😩`); 
                     choice1.removeEventListener('click',event);
-                    a = 40; h = 48; e = 0;f = 0;g = 0;max =40; 
+                    a = 40; h = 48; e = 50;f = 50;g = 50;max =90; 
                     Quizset();
                   }};
           
@@ -2562,870 +3363,444 @@ else if(selectbox1.value === "verb5"){
                         }
                checkAnswer();
         
-        }
-        
-        
-        Quizset();
-        
-        
-        
-      
-      
-      
-      
-        }
-
-
-else if(selectbox1.value === "else1"){
-          
-          a = 0; h = 8; e = 10;f = 10;g = 10;max =80; 
-          function Quizset () {
-              const b = Math.floor(Math.random() * (max - e)) + e ;
-              let c = Math.floor(Math.random() * (max - f)) + f ;
-              let d = Math.floor(Math.random() * (max - g)) + g ;
-              
-            Qnum.textContent = `No.${a + 1}`;
-            question.textContent = QuizElse[a].q;
-          
-          while(choice1.firstChild){
-            choice1.removeChild(choice1.firstChild);
-          }
-          
-            item1.textContent = QuizElse[a].c;
-            const ul1 = document.querySelector('ul');
-              ul1.appendChild(item1);
-            
-              item2.textContent = WrongElse[b];
-              const ul = document.querySelector('ul');
-                ul.appendChild(item2);
-            
-              item3.textContent = WrongElse[c];
-              const ul2 = document.querySelector('ul');
-                ul.appendChild(item3);
-              
-               item4.textContent = WrongElse[d];
-               const ul3 = document.querySelector('ul');
-                 ul.appendChild(item4);
-          
-          
-                 function shuffle() {
-          
-                  const x = Math.floor(Math.random() * 4 + 1) ;
-                  //console.log(x);
-                  
-                  if(x == 1){ 
-                    ul.insertBefore(item3,item1);
-                    ul.insertBefore(item2,item1);
-                    ul.insertBefore(item4,item1);
-                
-                  }else if(x == 2){
-                    ul.insertBefore(item1,item4);
-                    ul.insertBefore(item2,item1);
-                  }else if(x == 3){
-                    ul.insertBefore(item1,item3);
-                    ul.insertBefore(item2,item1);
-                  }
-                  else{
-                    ul.insertBefore(item4,item2);
-                  }
-                }
-                
-                shuffle();
-          
-                function checkAnswer(){
-                    
-                  let event = function(e){
-                    let t = e.target;
-                    if(t == item1){alert("正解👍"); 
-                    choice1.removeEventListener('click',event);
-                    if(a > h){
-                       alert(`合格!!`)
-                        location.reload();
-                    }else{
-                      a++;
-                    }
-                    Quizset();
-                
-                  }else{
-                      alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                      alert(`やりなおしです😩`); 
-                      choice1.removeEventListener('click',event);
-                      a = 0; h = 8; e = 10;f = 10;g = 10;max =80; 
-                      Quizset();
-                    }};
-            
-                  choice1.addEventListener('click',event,false);
-                          }
-                 checkAnswer();
-          
-          }
-          
-          
-          Quizset();
-          
-          
-          
-        
-        
-        
-        
-          }
-  
-else if(selectbox1.value === "else2"){
-            
-            a = 10; h = 18; e = 20;f = 20;g = 20;max =80; 
-            function Quizset () {
-                const b = Math.floor(Math.random() * (max - e)) + e ;
-                let c = Math.floor(Math.random() * (max - f)) + f ;
-                let d = Math.floor(Math.random() * (max - g)) + g ;
-                
-              Qnum.textContent = `No.${a + 1}`;
-              question.textContent = QuizElse[a].q;
-            
-            while(choice1.firstChild){
-              choice1.removeChild(choice1.firstChild);
-            }
-            
-              item1.textContent = QuizElse[a].c;
-              const ul1 = document.querySelector('ul');
-                ul1.appendChild(item1);
-              
-                item2.textContent = WrongElse[b];
-                const ul = document.querySelector('ul');
-                  ul.appendChild(item2);
-              
-                item3.textContent = WrongElse[c];
-                const ul2 = document.querySelector('ul');
-                  ul.appendChild(item3);
-                
-                 item4.textContent = WrongElse[d];
-                 const ul3 = document.querySelector('ul');
-                   ul.appendChild(item4);
-            
-            
-                   function shuffle() {
-            
-                    const x = Math.floor(Math.random() * 4 + 1) ;
-                    //console.log(x);
-                    
-                    if(x == 1){ 
-                      ul.insertBefore(item3,item1);
-                      ul.insertBefore(item2,item1);
-                      ul.insertBefore(item4,item1);
-                  
-                    }else if(x == 2){
-                      ul.insertBefore(item1,item4);
-                      ul.insertBefore(item2,item1);
-                    }else if(x == 3){
-                      ul.insertBefore(item1,item3);
-                      ul.insertBefore(item2,item1);
-                    }
-                    else{
-                      ul.insertBefore(item4,item2);
-                    }
-                  }
-                  
-                  shuffle();
-            
-                  function checkAnswer(){
-                      
-                    let event = function(e){
-                      let t = e.target;
-                      if(t == item1){alert("正解👍"); 
-                      choice1.removeEventListener('click',event);
-                      if(a > h){
-                         alert(`合格!!`)
-                          location.reload();
-                      }else{
-                        a++;
-                      }
-                      Quizset();
-                  
-                    }else{
-                        alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                        alert(`やりなおしです😩`); 
-                        choice1.removeEventListener('click',event);
-                        a = 10; h = 18; e = 20;f = 20;g = 20;max =80; 
-                        Quizset();
-                      }};
-              
-                    choice1.addEventListener('click',event,false);
-                            }
-                   checkAnswer();
-            
-            }
-            
-            
-            Quizset();
-            
-            
-            
-          
-          
-          
-          
-            }
-else if(selectbox1.value === "else3"){
-              
-              a = 20; h = 28; e = 30;f = 30;g = 30;max =80; 
-              function Quizset () {
-                  const b = Math.floor(Math.random() * (max - e)) + e ;
-                  let c = Math.floor(Math.random() * (max - f)) + f ;
-                  let d = Math.floor(Math.random() * (max - g)) + g ;
-                  
-                Qnum.textContent = `No.${a + 1}`;
-                question.textContent = QuizElse[a].q;
-              
-              while(choice1.firstChild){
-                choice1.removeChild(choice1.firstChild);
-              }
-              
-                item1.textContent = QuizElse[a].c;
-                const ul1 = document.querySelector('ul');
-                  ul1.appendChild(item1);
-                
-                  item2.textContent = WrongElse[b];
-                  const ul = document.querySelector('ul');
-                    ul.appendChild(item2);
-                
-                  item3.textContent = WrongElse[c];
-                  const ul2 = document.querySelector('ul');
-                    ul.appendChild(item3);
-                  
-                   item4.textContent = WrongElse[d];
-                   const ul3 = document.querySelector('ul');
-                     ul.appendChild(item4);
-              
-              
-                     function shuffle() {
-              
-                      const x = Math.floor(Math.random() * 4 + 1) ;
-                      //console.log(x);
-                      
-                      if(x == 1){ 
-                        ul.insertBefore(item3,item1);
-                        ul.insertBefore(item2,item1);
-                        ul.insertBefore(item4,item1);
-                    
-                      }else if(x == 2){
-                        ul.insertBefore(item1,item4);
-                        ul.insertBefore(item2,item1);
-                      }else if(x == 3){
-                        ul.insertBefore(item1,item3);
-                        ul.insertBefore(item2,item1);
-                      }
-                      else{
-                        ul.insertBefore(item4,item2);
-                      }
-                    }
-                    
-                    shuffle();
-              
-                    function checkAnswer(){
-                        
-                      let event = function(e){
-                        let t = e.target;
-                        if(t == item1){alert("正解👍"); 
-                        choice1.removeEventListener('click',event);
-                        if(a > h){
-                           alert(`合格!!`)
-                            location.reload();
-                        }else{
-                          a++;
-                        }
-                        Quizset();
-                    
-                      }else{
-                          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                          alert(`やりなおしです😩`); 
-                          choice1.removeEventListener('click',event);
-                          a = 20; h = 28; e = 30;f = 30;g = 30;max =80; 
-                          Quizset();
-                        }};
-                
-                      choice1.addEventListener('click',event,false);
-                              }
-                     checkAnswer();
-              
-              }
-              
-              
-              Quizset();
-              
-              
-              
-            
-            
-            
-            
-              }
-else if(selectbox1.value === "else4"){
-                
-                a = 30; h = 38; e = 40;f = 40;g = 40;max =90; 
-                function Quizset () {
-                    const b = Math.floor(Math.random() * (max - e)) + e ;
-                    let c = Math.floor(Math.random() * (max - f)) + f ;
-                    let d = Math.floor(Math.random() * (max - g)) + g ;
-                    
-                  Qnum.textContent = `No.${a + 1}`;
-                  question.textContent = QuizElse[a].q;
-                
-                while(choice1.firstChild){
-                  choice1.removeChild(choice1.firstChild);
-                }
-                
-                  item1.textContent = QuizElse[a].c;
-                  const ul1 = document.querySelector('ul');
-                    ul1.appendChild(item1);
-                  
-                    item2.textContent = WrongElse[b];
-                    const ul = document.querySelector('ul');
-                      ul.appendChild(item2);
-                  
-                    item3.textContent = WrongElse[c];
-                    const ul2 = document.querySelector('ul');
-                      ul.appendChild(item3);
-                    
-                     item4.textContent = WrongElse[d];
-                     const ul3 = document.querySelector('ul');
-                       ul.appendChild(item4);
-                
-                
-                       function shuffle() {
-                
-                        const x = Math.floor(Math.random() * 4 + 1) ;
-                        //console.log(x);
-                        
-                        if(x == 1){ 
-                          ul.insertBefore(item3,item1);
-                          ul.insertBefore(item2,item1);
-                          ul.insertBefore(item4,item1);
-                      
-                        }else if(x == 2){
-                          ul.insertBefore(item1,item4);
-                          ul.insertBefore(item2,item1);
-                        }else if(x == 3){
-                          ul.insertBefore(item1,item3);
-                          ul.insertBefore(item2,item1);
-                        }
-                        else{
-                          ul.insertBefore(item4,item2);
-                        }
-                      }
-                      
-                      shuffle();
-                
-                      function checkAnswer(){
-                          
-                        let event = function(e){
-                          let t = e.target;
-                          if(t == item1){alert("正解👍"); 
-                          choice1.removeEventListener('click',event);
-                          if(a > h){
-                             alert(`合格!!`)
-                              location.reload();
-                          }else{
-                            a++;
-                          }
-                          Quizset();
-                      
-                        }else{
-                            alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                            alert(`やりなおしです😩`); 
-                            choice1.removeEventListener('click',event);
-                            a = 30; h = 38; e = 40;f = 40;g = 40;max =90; 
-                            Quizset();
-                          }};
-                  
-                        choice1.addEventListener('click',event,false);
-                                }
-                       checkAnswer();
-                
-                }
-                
-                
-                Quizset();
-                
-                
-                
-              
-              
-              
-              
-                }
-  else if(selectbox1.value === "else5"){
-          
-          a = 40; h = 48; e = 50;f = 50;g = 50;max =90; 
-          function Quizset () {
-              const b = Math.floor(Math.random() * (max - e)) + e ;
-              let c = Math.floor(Math.random() * (max - f)) + f ;
-              let d = Math.floor(Math.random() * (max - g)) + g ;
-              
-            Qnum.textContent = `No.${a + 1}`;
-            question.textContent = QuizElse[a].q;
-          
-          while(choice1.firstChild){
-            choice1.removeChild(choice1.firstChild);
-          }
-          
-            item1.textContent = QuizElse[a].c;
-            const ul1 = document.querySelector('ul');
-              ul1.appendChild(item1);
-            
-              item2.textContent = WrongElse[b];
-              const ul = document.querySelector('ul');
-                ul.appendChild(item2);
-            
-              item3.textContent = WrongElse[c];
-              const ul2 = document.querySelector('ul');
-                ul.appendChild(item3);
-              
-               item4.textContent = WrongElse[d];
-               const ul3 = document.querySelector('ul');
-                 ul.appendChild(item4);
-          
-          
-                 function shuffle() {
-          
-                  const x = Math.floor(Math.random() * 4 + 1) ;
-                  //console.log(x);
-                  
-                  if(x == 1){ 
-                    ul.insertBefore(item3,item1);
-                    ul.insertBefore(item2,item1);
-                    ul.insertBefore(item4,item1);
-                
-                  }else if(x == 2){
-                    ul.insertBefore(item1,item4);
-                    ul.insertBefore(item2,item1);
-                  }else if(x == 3){
-                    ul.insertBefore(item1,item3);
-                    ul.insertBefore(item2,item1);
-                  }
-                  else{
-                    ul.insertBefore(item4,item2);
-                  }
-                }
-                
-                shuffle();
-          
-                function checkAnswer(){
-                    
-                  let event = function(e){
-                    let t = e.target;
-                    if(t == item1){alert("正解👍"); 
-                    choice1.removeEventListener('click',event);
-                    if(a > h){
-                       alert(`合格!!`)
-                        location.reload();
-                    }else{
-                      a++;
-                    }
-                    Quizset();
-                
-                  }else{
-                      alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                      alert(`やりなおしです😩`); 
-                      choice1.removeEventListener('click',event);
-                      a = 40; h = 48; e = 50;f = 50;g = 50;max =90; 
-                      Quizset();
-                    }};
-            
-                  choice1.addEventListener('click',event,false);
-                          }
-                 checkAnswer();
-          
-          }
-          
-          
-          Quizset();
-          
-          
-          
-        
-        
-        
-        
+        } Quizset();
           }
 
 else if(selectbox1.value === "else6"){
+      a = 50; h = 58; e = 15;f = 15;g = 15;max =50; 
+      function Quizset () {
+        const b = Math.floor(Math.random() * (max - e)) + e ;
+        let c = Math.floor(Math.random() * (max - f)) + f ;
+        let d = Math.floor(Math.random() * (max - g)) + g ;
+        
+      Qnum.textContent = `No.${a + 1}`;
+      question.textContent = QuizElse[a].q;
+    
+      var speak   = new SpeechSynthesisUtterance();
+      speak.text  = question.textContent;
+      speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+      speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+      speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+      
+      speechSynthesis.speak(speak);
+      
+
+
+    while(choice1.firstChild){
+      choice1.removeChild(choice1.firstChild);
+    }
+    
+      item1.textContent = QuizElse[a].c;
+      const ul1 = document.querySelector('ul');
+        ul1.appendChild(item1);
+      
+        item2.textContent = WrongElse[b];
+        const ul = document.querySelector('ul');
+          ul.appendChild(item2);
+      
+        item3.textContent = WrongElse[c];
+        const ul2 = document.querySelector('ul');
+          ul.appendChild(item3);
+        
+         item4.textContent = WrongElse[d];
+         const ul3 = document.querySelector('ul');
+           ul.appendChild(item4);
+    
+    
+           function shuffle() {
+    
+            const x = Math.floor(Math.random() * 4 + 1) ;
+            //console.log(x);
             
-            a = 50; h = 58; e = 15;f = 15;g = 15;max =50; 
-            function Quizset () {
-                const b = Math.floor(Math.random() * (max - e)) + e ;
-                let c = Math.floor(Math.random() * (max - f)) + f ;
-                let d = Math.floor(Math.random() * (max - g)) + g ;
-                
-              Qnum.textContent = `No.${a + 1}`;
-              question.textContent = QuizElse[a].q;
-            
-            while(choice1.firstChild){
-              choice1.removeChild(choice1.firstChild);
+            if(x == 1){ 
+              ul.insertBefore(item3,item1);
+              ul.insertBefore(item2,item1);
+              ul.insertBefore(item4,item1);
+          
+            }else if(x == 2){
+              ul.insertBefore(item1,item4);
+              ul.insertBefore(item2,item1);
+            }else if(x == 3){
+              ul.insertBefore(item1,item3);
+              ul.insertBefore(item2,item1);
             }
-            
-              item1.textContent = QuizElse[a].c;
-              const ul1 = document.querySelector('ul');
-                ul1.appendChild(item1);
+            else{
+              ul.insertBefore(item4,item2);
+            }
+          }
+          
+          shuffle();
+    
+          function checkAnswer(){
               
-                item2.textContent = WrongElse[b];
-                const ul = document.querySelector('ul');
-                  ul.appendChild(item2);
-              
-                item3.textContent = WrongElse[c];
-                const ul2 = document.querySelector('ul');
-                  ul.appendChild(item3);
-                
-                 item4.textContent = WrongElse[d];
-                 const ul3 = document.querySelector('ul');
-                   ul.appendChild(item4);
-            
-            
-                   function shuffle() {
-            
-                    const x = Math.floor(Math.random() * 4 + 1) ;
-                    //console.log(x);
-                    
-                    if(x == 1){ 
-                      ul.insertBefore(item3,item1);
-                      ul.insertBefore(item2,item1);
-                      ul.insertBefore(item4,item1);
-                  
-                    }else if(x == 2){
-                      ul.insertBefore(item1,item4);
-                      ul.insertBefore(item2,item1);
-                    }else if(x == 3){
-                      ul.insertBefore(item1,item3);
-                      ul.insertBefore(item2,item1);
+            let event = function(e){
+              let t = e.target;
+              if(t == item1){alert("正解👍"); 
+              choice1.removeEventListener('click',event);
+              if(a > h){
+                var Finish   = new SpeechSynthesisUtterance();
+                Finish.text  = 'Great!!Good job!!';
+                Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                speechSynthesis.speak(Finish);
+      
+
+                 alert(`合格!!`)
+                  location.reload();
+              }else{
+                a++;
+              }
+              Quizset();
+          
+            }else{
+                alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                var OMT   = new SpeechSynthesisUtterance();
+                OMT.text  = 'one more time';
+                OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                speechSynthesis.speak(OMT);
+
+                alert(`やりなおしです😩`); 
+                choice1.removeEventListener('click',event);
+                a = 50; h = 58; e = 15;f = 15;g = 15;max =50; 
+                Quizset();
+              }};
+      
+            choice1.addEventListener('click',event,false);
                     }
-                    else{
-                      ul.insertBefore(item4,item2);
-                    }
-                  }
-                  
-                  shuffle();
-            
-                  function checkAnswer(){
-                      
-                    let event = function(e){
-                      let t = e.target;
-                      if(t == item1){alert("正解👍"); 
-                      choice1.removeEventListener('click',event);
-                      if(a > h){
-                         alert(`合格!!`)
-                          location.reload();
-                      }else{
-                        a++;
-                      }
-                      Quizset();
-                  
-                    }else{
-                        alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                        alert(`やりなおしです😩`); 
-                        choice1.removeEventListener('click',event);
-                        a = 50; h = 58; e = 15;f = 15;g = 15;max =50; 
-                        Quizset();
-                      }};
-              
-                    choice1.addEventListener('click',event,false);
-                            }
-                   checkAnswer();
-            
-            }
-            
-            
-            Quizset();
-            
-            
-            
-          
-          
-          
-          
-            }
+           checkAnswer();
+    
+    } Quizset();
+   }
   
 else if(selectbox1.value === "else7"){
+      a = 60; h = 68; e = 15;f = 15;g = 15;max =60; 
+      function Quizset () {
+        const b = Math.floor(Math.random() * (max - e)) + e ;
+        let c = Math.floor(Math.random() * (max - f)) + f ;
+        let d = Math.floor(Math.random() * (max - g)) + g ;
+        
+      Qnum.textContent = `No.${a + 1}`;
+      question.textContent = QuizElse[a].q;
+    
+      var speak   = new SpeechSynthesisUtterance();
+      speak.text  = question.textContent;
+      speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+      speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+      speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+      
+      speechSynthesis.speak(speak);
+      
+
+
+    while(choice1.firstChild){
+      choice1.removeChild(choice1.firstChild);
+    }
+    
+      item1.textContent = QuizElse[a].c;
+      const ul1 = document.querySelector('ul');
+        ul1.appendChild(item1);
+      
+        item2.textContent = WrongElse[b];
+        const ul = document.querySelector('ul');
+          ul.appendChild(item2);
+      
+        item3.textContent = WrongElse[c];
+        const ul2 = document.querySelector('ul');
+          ul.appendChild(item3);
+        
+         item4.textContent = WrongElse[d];
+         const ul3 = document.querySelector('ul');
+           ul.appendChild(item4);
+    
+    
+           function shuffle() {
+    
+            const x = Math.floor(Math.random() * 4 + 1) ;
+            //console.log(x);
+            
+            if(x == 1){ 
+              ul.insertBefore(item3,item1);
+              ul.insertBefore(item2,item1);
+              ul.insertBefore(item4,item1);
+          
+            }else if(x == 2){
+              ul.insertBefore(item1,item4);
+              ul.insertBefore(item2,item1);
+            }else if(x == 3){
+              ul.insertBefore(item1,item3);
+              ul.insertBefore(item2,item1);
+            }
+            else{
+              ul.insertBefore(item4,item2);
+            }
+          }
+          
+          shuffle();
+    
+          function checkAnswer(){
               
-              a = 60; h = 68; e = 15;f = 15;g = 15;max =60; 
-              function Quizset () {
-                  const b = Math.floor(Math.random() * (max - e)) + e ;
-                  let c = Math.floor(Math.random() * (max - f)) + f ;
-                  let d = Math.floor(Math.random() * (max - g)) + g ;
-                  
-                Qnum.textContent = `No.${a + 1}`;
-                question.textContent = QuizElse[a].q;
-              
-              while(choice1.firstChild){
-                choice1.removeChild(choice1.firstChild);
+            let event = function(e){
+              let t = e.target;
+              if(t == item1){alert("正解👍"); 
+              choice1.removeEventListener('click',event);
+              if(a > h){
+                var Finish   = new SpeechSynthesisUtterance();
+                Finish.text  = 'Great!!Good job!!';
+                Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                speechSynthesis.speak(Finish);
+      
+
+                 alert(`合格!!`)
+                  location.reload();
+              }else{
+                a++;
               }
-              
-                item1.textContent = QuizElse[a].c;
-                const ul1 = document.querySelector('ul');
-                  ul1.appendChild(item1);
-                
-                  item2.textContent = WrongElse[b];
-                  const ul = document.querySelector('ul');
-                    ul.appendChild(item2);
-                
-                  item3.textContent = WrongElse[c];
-                  const ul2 = document.querySelector('ul');
-                    ul.appendChild(item3);
-                  
-                   item4.textContent = WrongElse[d];
-                   const ul3 = document.querySelector('ul');
-                     ul.appendChild(item4);
-              
-              
-                     function shuffle() {
-              
-                      const x = Math.floor(Math.random() * 4 + 1) ;
-                      //console.log(x);
-                      
-                      if(x == 1){ 
-                        ul.insertBefore(item3,item1);
-                        ul.insertBefore(item2,item1);
-                        ul.insertBefore(item4,item1);
-                    
-                      }else if(x == 2){
-                        ul.insertBefore(item1,item4);
-                        ul.insertBefore(item2,item1);
-                      }else if(x == 3){
-                        ul.insertBefore(item1,item3);
-                        ul.insertBefore(item2,item1);
-                      }
-                      else{
-                        ul.insertBefore(item4,item2);
-                      }
-                    }
-                    
-                    shuffle();
-              
-                    function checkAnswer(){
-                        
-                      let event = function(e){
-                        let t = e.target;
-                        if(t == item1){alert("正解👍"); 
-                        choice1.removeEventListener('click',event);
-                        if(a > h){
-                           alert(`合格!!`)
-                            location.reload();
-                        }else{
-                          a++;
-                        }
-                        Quizset();
-                    
-                      }else{
-                          alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                          alert(`やりなおしです😩`); 
-                          choice1.removeEventListener('click',event);
-                          a = 60; h = 68; e = 15;f = 15;g = 15;max =60; 
-                          Quizset();
-                        }};
-                
-                      choice1.addEventListener('click',event,false);
-                              }
-                     checkAnswer();
-              
-              }
-              
-              
               Quizset();
-              
-              
-              
-            
-            
-            
-            
-              }
+          
+            }else{
+                alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                var OMT   = new SpeechSynthesisUtterance();
+                OMT.text  = 'one more time';
+                OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                speechSynthesis.speak(OMT);
+
+                alert(`やりなおしです😩`); 
+                choice1.removeEventListener('click',event);
+                a = 60; h = 68; e = 15;f = 15;g = 15;max =60; 
+                Quizset();
+              }};
+      
+            choice1.addEventListener('click',event,false);
+                    }
+           checkAnswer();
+    
+    } Quizset();
+    }
   
  else if(selectbox1.value === "else8"){
+          a = 70; h = 78; e = 15;f = 15;g = 15;max =70; 
+          function Quizset () {
+            const b = Math.floor(Math.random() * (max - e)) + e ;
+            let c = Math.floor(Math.random() * (max - f)) + f ;
+            let d = Math.floor(Math.random() * (max - g)) + g ;
+            
+          Qnum.textContent = `No.${a + 1}`;
+          question.textContent = QuizElse[a].q;
+        
+          var speak   = new SpeechSynthesisUtterance();
+          speak.text  = question.textContent;
+          speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+          speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+          speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+          
+          speechSynthesis.speak(speak);
+          
+
+
+        while(choice1.firstChild){
+          choice1.removeChild(choice1.firstChild);
+        }
+        
+          item1.textContent = QuizElse[a].c;
+          const ul1 = document.querySelector('ul');
+            ul1.appendChild(item1);
+          
+            item2.textContent = WrongElse[b];
+            const ul = document.querySelector('ul');
+              ul.appendChild(item2);
+          
+            item3.textContent = WrongElse[c];
+            const ul2 = document.querySelector('ul');
+              ul.appendChild(item3);
+            
+             item4.textContent = WrongElse[d];
+             const ul3 = document.querySelector('ul');
+               ul.appendChild(item4);
+        
+        
+               function shuffle() {
+        
+                const x = Math.floor(Math.random() * 4 + 1) ;
+                //console.log(x);
                 
-                a = 70; h = 78; e = 15;f = 15;g = 15;max =70; 
-                function Quizset () {
-                    const b = Math.floor(Math.random() * (max - e)) + e ;
-                    let c = Math.floor(Math.random() * (max - f)) + f ;
-                    let d = Math.floor(Math.random() * (max - g)) + g ;
-                    
-                  Qnum.textContent = `No.${a + 1}`;
-                  question.textContent = QuizElse[a].q;
-                
-                while(choice1.firstChild){
-                  choice1.removeChild(choice1.firstChild);
+                if(x == 1){ 
+                  ul.insertBefore(item3,item1);
+                  ul.insertBefore(item2,item1);
+                  ul.insertBefore(item4,item1);
+              
+                }else if(x == 2){
+                  ul.insertBefore(item1,item4);
+                  ul.insertBefore(item2,item1);
+                }else if(x == 3){
+                  ul.insertBefore(item1,item3);
+                  ul.insertBefore(item2,item1);
                 }
-                
-                  item1.textContent = QuizElse[a].c;
-                  const ul1 = document.querySelector('ul');
-                    ul1.appendChild(item1);
-                  
-                    item2.textContent = WrongElse[b];
-                    const ul = document.querySelector('ul');
-                      ul.appendChild(item2);
-                  
-                    item3.textContent = WrongElse[c];
-                    const ul2 = document.querySelector('ul');
-                      ul.appendChild(item3);
-                    
-                     item4.textContent = WrongElse[d];
-                     const ul3 = document.querySelector('ul');
-                       ul.appendChild(item4);
-                
-                
-                       function shuffle() {
-                
-                        const x = Math.floor(Math.random() * 4 + 1) ;
-                        //console.log(x);
-                        
-                        if(x == 1){ 
-                          ul.insertBefore(item3,item1);
-                          ul.insertBefore(item2,item1);
-                          ul.insertBefore(item4,item1);
-                      
-                        }else if(x == 2){
-                          ul.insertBefore(item1,item4);
-                          ul.insertBefore(item2,item1);
-                        }else if(x == 3){
-                          ul.insertBefore(item1,item3);
-                          ul.insertBefore(item2,item1);
-                        }
-                        else{
-                          ul.insertBefore(item4,item2);
-                        }
-                      }
-                      
-                      shuffle();
-                
-                      function checkAnswer(){
-                          
-                        let event = function(e){
-                          let t = e.target;
-                          if(t == item1){alert("正解👍"); 
-                          choice1.removeEventListener('click',event);
-                          if(a > h){
-                             alert(`合格!!`)
-                              location.reload();
-                          }else{
-                            a++;
-                          }
-                          Quizset();
-                      
-                        }else{
-                            alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                            alert(`やりなおしです😩`); 
-                            choice1.removeEventListener('click',event);
-                            a = 70; h = 78; e = 15;f = 15;g = 15;max =70; 
-                            Quizset();
-                          }};
-                  
-                        choice1.addEventListener('click',event,false);
-                                }
-                       checkAnswer();
-                
+                else{
+                  ul.insertBefore(item4,item2);
                 }
-                
-                
-                Quizset();
-                
-                
-                
+              }
               
-              
-              
-              
-                }
-else if(selectbox1.value === "else9"){
+              shuffle();
+        
+              function checkAnswer(){
                   
-                  a = 80; h = 88; e = 15;f = 15;g = 15;max =80; 
-                  function Quizset () {
-                      const b = Math.floor(Math.random() * (max - e)) + e ;
-                      let c = Math.floor(Math.random() * (max - f)) + f ;
-                      let d = Math.floor(Math.random() * (max - g)) + g ;
-                      
-                    Qnum.textContent = `No.${a + 1}`;
-                    question.textContent = QuizElse[a].q;
-                  
-                  while(choice1.firstChild){
-                    choice1.removeChild(choice1.firstChild);
+                let event = function(e){
+                  let t = e.target;
+                  if(t == item1){alert("正解👍"); 
+                  choice1.removeEventListener('click',event);
+                  if(a > h){
+                    var Finish   = new SpeechSynthesisUtterance();
+                    Finish.text  = 'Great!!Good job!!';
+                    Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                    Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                    Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                    speechSynthesis.speak(Finish);
+          
+
+                     alert(`合格!!`)
+                      location.reload();
+                  }else{
+                    a++;
                   }
-                  
-                    item1.textContent = QuizElse[a].c;
-                    const ul1 = document.querySelector('ul');
-                      ul1.appendChild(item1);
-                    
-                      item2.textContent = WrongElse[b];
-                      const ul = document.querySelector('ul');
-                        ul.appendChild(item2);
-                    
-                      item3.textContent = WrongElse[c];
-                      const ul2 = document.querySelector('ul');
-                        ul.appendChild(item3);
-                      
-                       item4.textContent = WrongElse[d];
-                       const ul3 = document.querySelector('ul');
-                         ul.appendChild(item4);
-                  
-                  
-                         function shuffle() {
-                  
-                          const x = Math.floor(Math.random() * 4 + 1) ;
-                          //console.log(x);
-                          
-                          if(x == 1){ 
-                            ul.insertBefore(item3,item1);
-                            ul.insertBefore(item2,item1);
-                            ul.insertBefore(item4,item1);
-                        
-                          }else if(x == 2){
-                            ul.insertBefore(item1,item4);
-                            ul.insertBefore(item2,item1);
-                          }else if(x == 3){
-                            ul.insertBefore(item1,item3);
-                            ul.insertBefore(item2,item1);
-                          }
-                          else{
-                            ul.insertBefore(item4,item2);
-                          }
-                        }
-                        
-                        shuffle();
-                  
-                        function checkAnswer(){
-                            
-                          let event = function(e){
-                            let t = e.target;
-                            if(t == item1){alert("正解👍"); 
-                            choice1.removeEventListener('click',event);
-                            if(a > h){
-                               alert(`合格!!`)
-                                location.reload();
-                            }else{
-                              a++;
-                            }
-                            Quizset();
-                        
-                          }else{
-                              alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
-                              alert(`やりなおしです😩`); 
-                              choice1.removeEventListener('click',event);
-                              a = 80; h = 88; e = 15;f = 15;g = 15;max =80; 
-                              Quizset();
-                            }};
-                    
-                          choice1.addEventListener('click',event,false);
-                                  }
-                         checkAnswer();
-                  
-                  }
-                  
-                  
                   Quizset();
-                  
-                  
-                  
+              
+                }else{
+                    alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                    var OMT   = new SpeechSynthesisUtterance();
+                    OMT.text  = 'one more time';
+                    OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                    OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                    OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                    speechSynthesis.speak(OMT);
+
+                    alert(`やりなおしです😩`); 
+                    choice1.removeEventListener('click',event);
+                    a = 70; h = 78; e = 15;f = 15;g = 15;max =70; 
+                    Quizset();
+                  }};
+          
+                choice1.addEventListener('click',event,false);
+                        }
+               checkAnswer();
+        
+        } Quizset();
+    }
+else if(selectbox1.value === "else9"){
+         a = 80; h = 88; e = 15;f = 15;g = 15;max =80; 
+         function Quizset () {
+          const b = Math.floor(Math.random() * (max - e)) + e ;
+          let c = Math.floor(Math.random() * (max - f)) + f ;
+          let d = Math.floor(Math.random() * (max - g)) + g ;
+          
+        Qnum.textContent = `No.${a + 1}`;
+        question.textContent = QuizElse[a].q;
+      
+        var speak   = new SpeechSynthesisUtterance();
+        speak.text  = question.textContent;
+        speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+        speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+        speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+        
+        speechSynthesis.speak(speak);
+        
+
+
+      while(choice1.firstChild){
+        choice1.removeChild(choice1.firstChild);
+      }
+      
+        item1.textContent = QuizElse[a].c;
+        const ul1 = document.querySelector('ul');
+          ul1.appendChild(item1);
+        
+          item2.textContent = WrongElse[b];
+          const ul = document.querySelector('ul');
+            ul.appendChild(item2);
+        
+          item3.textContent = WrongElse[c];
+          const ul2 = document.querySelector('ul');
+            ul.appendChild(item3);
+          
+           item4.textContent = WrongElse[d];
+           const ul3 = document.querySelector('ul');
+             ul.appendChild(item4);
+      
+      
+             function shuffle() {
+      
+              const x = Math.floor(Math.random() * 4 + 1) ;
+              //console.log(x);
+              
+              if(x == 1){ 
+                ul.insertBefore(item3,item1);
+                ul.insertBefore(item2,item1);
+                ul.insertBefore(item4,item1);
+            
+              }else if(x == 2){
+                ul.insertBefore(item1,item4);
+                ul.insertBefore(item2,item1);
+              }else if(x == 3){
+                ul.insertBefore(item1,item3);
+                ul.insertBefore(item2,item1);
+              }
+              else{
+                ul.insertBefore(item4,item2);
+              }
+            }
+            
+            shuffle();
+      
+            function checkAnswer(){
                 
-                
-                
-                
-                  }
+              let event = function(e){
+                let t = e.target;
+                if(t == item1){alert("正解👍"); 
+                choice1.removeEventListener('click',event);
+                if(a > h){
+                  var Finish   = new SpeechSynthesisUtterance();
+                  Finish.text  = 'Great!!Good job!!';
+                  Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                  Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                  Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                  speechSynthesis.speak(Finish);
+        
+
+                   alert(`合格!!`)
+                    location.reload();
+                }else{
+                  a++;
+                }
+                Quizset();
+            
+              }else{
+                  alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+                  var OMT   = new SpeechSynthesisUtterance();
+                  OMT.text  = 'one more time';
+                  OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+                  OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+                  OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+                  speechSynthesis.speak(OMT);
+
+                  alert(`やりなおしです😩`); 
+                  choice1.removeEventListener('click',event);
+                  a = 80; h = 88; e = 15;f = 15;g = 15;max =80; 
+                  Quizset();
+                }};
+        
+              choice1.addEventListener('click',event,false);
+                      }
+             checkAnswer();
+      
+      } Quizset();
+
+        }
                         
 
 
