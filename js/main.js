@@ -157,6 +157,9 @@ const quizSet = [
   {q:`work`,c:`仕事，作品`},
   {q:`wall`,c:`壁`},
   {q:`paper`,c:`紙`},
+  {q:`girl`,c:`少女`},
+  {q:`father`,c:`父`},
+  {q:`doctor`,c:`医者`},
 
 ];
 const WrongAns = [
@@ -306,6 +309,9 @@ const WrongAns = [
   `仕事`,
   `壁`,
   `紙`,
+  `少女`,
+  `父`,
+  `医者`,
 ];
 const QuizVerb = [
   {q:`like`,c:`好む`},
@@ -649,9 +655,9 @@ question.textContent = quizSet[a].q;
 
 var speak   = new SpeechSynthesisUtterance();
 speak.text  = question.textContent;
-speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
-speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
-speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+speak.rate  = 1; 
+speak.pitch = 1;
+speak.lang  = 'en-US'; 
 
 speechSynthesis.speak(speak);
 
@@ -868,6 +874,125 @@ Quizset();
 
   }
   
+  else if(selectbox.value === "21-30"){
+  
+    a = 20; h = 28; e = 30;f = 30;g = 30;max =100; 
+   
+  function Quizset () {
+    const b = Math.floor(Math.random() * (max - e)) + e ;
+    let c = Math.floor(Math.random() * (max - f)) + f ;
+    let d = Math.floor(Math.random() * (max - g)) + g ;
+  Qnum.textContent = `No.${a + 1}`;
+  question.textContent = quizSet[a].q;
+  
+  //読み上げ
+  
+  var speak   = new SpeechSynthesisUtterance();
+  speak.text  = question.textContent;
+  speak.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+  speak.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+  speak.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+  
+  // sleep(10);
+  speechSynthesis.speak(speak);
+  
+  
+  while(choice1.firstChild){
+  choice1.removeChild(choice1.firstChild);
+  }
+  
+  item1.textContent = quizSet[a].c;
+  const ul1 = document.querySelector('ul');
+    ul1.appendChild(item1);
+  
+    item2.textContent = WrongAns[b];
+    const ul = document.querySelector('ul');
+      ul.appendChild(item2);
+  
+    item3.textContent = WrongAns[c];
+    const ul2 = document.querySelector('ul');
+      ul.appendChild(item3);
+    
+     item4.textContent = WrongAns[d];
+     const ul3 = document.querySelector('ul');
+       ul.appendChild(item4);
+  
+  
+       function shuffle() {
+  
+        const x = Math.floor(Math.random() * 4 + 1) ;
+        //console.log(x);
+        
+        if(x == 1){ 
+          ul.insertBefore(item3,item1);
+          ul.insertBefore(item2,item1);
+          ul.insertBefore(item4,item1);
+      
+        }else if(x == 2){
+          ul.insertBefore(item1,item4);
+          ul.insertBefore(item2,item1);
+        }else if(x == 3){
+          ul.insertBefore(item1,item3);
+          ul.insertBefore(item2,item1);
+        }
+        else{
+          ul.insertBefore(item4,item2);
+        }
+      }
+      
+      shuffle();
+  
+      function checkAnswer(){
+          
+        let event = function(e){
+          let t = e.target;
+          if(t == item1){
+            alert('正解👍');
+            
+          choice1.removeEventListener('click',event);
+          if(a > h){
+               
+            var Finish   = new SpeechSynthesisUtterance();
+            Finish.text  = 'Great!!Good job!!';
+            Finish.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+            Finish.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+            Finish.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+            speechSynthesis.speak(Finish);
+            alert(`合格!!`)
+              location.reload();
+          }else{
+            a++;
+          }
+          Quizset();
+      
+        }else{
+  
+            alert(`不正解🙅 \n 答えは「${item1.textContent}」`); 
+  
+            var OMT   = new SpeechSynthesisUtterance();
+            OMT.text  = 'one more time';
+            OMT.rate  = 1; // 読み上げ速度 0.1-10 初期値:1 (倍速なら2, 半分の倍速なら0.5, )
+            OMT.pitch = 1;　// 声の高さ 0-2 初期値:1(0で女性の声) 
+            OMT.lang  = 'en-US'; //(日本語:ja-JP, アメリカ英語:en-US, イギリス英語:en-GB, 中国語:zh-CN, 韓国語:ko-KR)
+            speechSynthesis.speak(OMT);
+            alert(`やりなおしです😩`); 
+  
+            choice1.removeEventListener('click',event);
+            a = 20; h = 28; e = 30;f = 30;g = 30;max =100; 
+            Quizset();
+          }};
+  
+        choice1.addEventListener('click',event,false);
+                }
+       checkAnswer();
+  
+  }
+  Quizset();
+  
+    }
+    
+
+
     else if(selectbox.value === "31-40"){     
       a = 30; h = 38; e = 40;f = 40;g = 40;max =90; 
       function Quizset () {
