@@ -828,8 +828,9 @@ else if(selectbox.value === "141-150"){
             }else{
                 //次の問題へ
               a++;
+                  Quizset();
             }
-            Quizset();
+        
   
   
         },500);
@@ -1009,8 +1010,9 @@ const ul1 = document.querySelector('ul');
           }else{
               //次の問題へ
             a++;
-          }
           Quizset();
+          }
+        
 
 
       },500);
@@ -1213,8 +1215,9 @@ else if(selectbox2.value === "else9"){
               }else{
                   //次の問題へ
                 a++;
-              }
               Quizset();
+              }
+           
     
     
           },500);
