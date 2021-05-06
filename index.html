@@ -3,11 +3,9 @@
 <head>
 <meta charset="utf-8">
 <title>英単語テスト</title>
+
 <link rel = "stylesheet" href = "css/style.css">
 </head>
-   
-   
-<body>
 <meta name="viewport"
    content="width=320,
       height=480,
@@ -15,11 +13,35 @@
       minimum-scale=1.0,
       maximum-scale=2.0,
       user-scalable=yes" />
+
+<body>
+
 <section class = "container">
    
 <p id = "test-title">単語テスト</p>
 
-    <form>
+<section id = "modal" class = "hidden">
+    <p>合格！！よくできました。</p>
+    <a><img src="img/win.png"> </a>
+    <br>
+<button id = "close">問題選択へ</button>
+</section>
+
+<section id = "modal2" class = "hidden">
+    <img src="img/ng.png">
+    <br>
+    <p id = "answer">残念！！やりなおしです。</p>
+    <button id = "okay">OK</button>
+</section>
+
+<section id = "modal3" class = "hidden">
+ <p id = "isCorrected"></p>
+ <img src="img/ok.png"> 
+</section>
+
+
+
+<form>
         <select name="selectbox" id ="selectbox">
             <option value="">--名詞--</option>
             <option value="1-10">名詞１</option>
@@ -40,12 +62,16 @@
         </select>
 
         <select name="selectbox1"  id ="selectbox1">
-            <option value="">--その他--</option>
+            <option value="">--動詞--</option>
             <option value="verb1">動詞１</option>
             <option value="verb2">動詞２</option>
             <option value="verb3">動詞３</option>
             <option value="verb4">動詞４</option>
             <option value="verb5">動詞５</option>
+        </select>
+
+        <select name="selectbox2"  id ="selectbox2">   
+            <option value="">--その他--</option>
             <option value="else1">その他１</option>
             <option value="else2">その他２</option>
             <option value="else3">その他３</option>
@@ -61,25 +87,18 @@
 
     </form>
     <input id="reset"  type="button" value="リセット" onclick="ClickR();"/>
-
-      <script>
-
-     
-      </script>
 <br>   
 <br>   
-
     <div id ="Qnum">  </div> 
     <p id ="question"> 問題を選択してください。</p>
-    <ul id = "choice1" class = "choices"></ul>
+    <ul id = "choice1" class = "choices"></ul>   
+    
 
-    <!-- <div id = "btn" class = "disabled">次へ</div> -->
-<section id = "result" class="hidden">
-    <p>得点：3/3</p>
-    <a href= "" >次の問題へ</a>
+
 </section>
-</section>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> -->
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
 
